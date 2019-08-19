@@ -1,19 +1,3 @@
-/*
- * Copyright 2002-2018 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.springframework.aop.aspectj.annotation;
 
 import java.io.IOException;
@@ -40,6 +24,9 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @since 2.0
+ *
+ * @author wangheng
+ * @date 2019/08/16
  */
 @SuppressWarnings("serial")
 final class InstantiationModelAwarePointcutAdvisorImpl
@@ -99,9 +86,6 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 			Pointcut preInstantiationPointcut = Pointcuts.union(
 					aspectInstanceFactory.getAspectMetadata().getPerClausePointcut(), this.declaredPointcut);
 
-			// Make it dynamic: must mutate from pre-instantiation to post-instantiation state.
-			// If it's not a dynamic pointcut, it may be optimized out
-			// by the Spring AOP infrastructure after the first evaluation.
 			this.pointcut = new PerTargetInstantiationModelPointcut(
 					this.declaredPointcut, preInstantiationPointcut, aspectInstanceFactory);
 			this.lazy = true;
@@ -151,11 +135,6 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 		return (advice != null ? advice : EMPTY_ADVICE);
 	}
 
-	/**
-	 * This is only of interest for Spring AOP: AspectJ instantiation semantics
-	 * are much richer. In AspectJ terminology, all a return of {@code true}
-	 * means here is that the aspect is not a SINGLETON.
-	 */
 	@Override
 	public boolean isPerInstance() {
 		return (getAspectMetadata().getAjType().getPerClause().getKind() != PerClauseKind.SINGLETON);
@@ -207,10 +186,6 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 		return this.isAfterAdvice;
 	}
 
-	/**
-	 * Duplicates some logic from getAdvice, but importantly does not force
-	 * creation of the advice.
-	 */
 	private void determineAdviceType() {
 		AspectJAnnotation<?> aspectJAnnotation =
 				AbstractAspectJAdvisorFactory.findAspectJAnnotationOnMethod(this.aspectJAdviceMethod);
