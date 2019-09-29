@@ -233,7 +233,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 			this.advisedBeans.put(cacheKey, Boolean.FALSE);
 			return bean;
 		}
-//如果存在增强方法则创建代理
+		//如果存在增强方法则创建代理
 		// Create proxy if we have advice.
 		Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(bean.getClass(), beanName, null);
 		//如果获取到了增强则需要针对增强创建代理

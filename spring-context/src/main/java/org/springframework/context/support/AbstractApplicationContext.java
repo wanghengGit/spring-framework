@@ -1,19 +1,3 @@
-/*
- * Copyright 2002-2019 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.springframework.context.support;
 
 import java.io.IOException;
@@ -83,39 +67,13 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Abstract implementation of the {@link org.springframework.context.ApplicationContext}
- * interface. Doesn't mandate the type of storage used for configuration; simply
- * implements common context functionality. Uses the Template Method design pattern,
- * requiring concrete subclasses to implement abstract methods.
- *
- * <p>In contrast to a plain BeanFactory, an ApplicationContext is supposed
- * to detect special beans defined in its internal bean factory:
- * Therefore, this class automatically registers
- * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessors},
- * {@link org.springframework.beans.factory.config.BeanPostProcessor BeanPostProcessors},
- * and {@link org.springframework.context.ApplicationListener ApplicationListeners}
- * which are defined as beans in the context.
- *
- * <p>A {@link org.springframework.context.MessageSource} may also be supplied
- * as a bean in the context, with the name "messageSource"; otherwise, message
- * resolution is delegated to the parent context. Furthermore, a multicaster
- * for application events can be supplied as an "applicationEventMulticaster" bean
- * of type {@link org.springframework.context.event.ApplicationEventMulticaster}
- * in the context; otherwise, a default multicaster of type
- * {@link org.springframework.context.event.SimpleApplicationEventMulticaster} will be used.
- *
- * <p>Implements resource loading by extending
- * {@link org.springframework.core.io.DefaultResourceLoader}.
- * Consequently treats non-URL resource paths as class path resources
- * (supporting full class path resource names that include the package path,
- * e.g. "mypackage/myresource.dat"), unless the {@link #getResourceByPath}
- * method is overridden in a subclass.
- *
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Mark Fisher
  * @author Stephane Nicoll
  * @since January 21, 2001
+ * @author wangheng
+ * @date 2019/09/24
  * @see #refreshBeanFactory
  * @see #getBeanFactory
  * @see org.springframework.beans.factory.config.BeanFactoryPostProcessor
@@ -127,27 +85,10 @@ import org.springframework.util.ReflectionUtils;
 public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		implements ConfigurableApplicationContext {
 
-	/**
-	 * Name of the MessageSource bean in the factory.
-	 * If none is supplied, message resolution is delegated to the parent.
-	 * @see MessageSource
-	 */
 	public static final String MESSAGE_SOURCE_BEAN_NAME = "messageSource";
 
-	/**
-	 * Name of the LifecycleProcessor bean in the factory.
-	 * If none is supplied, a DefaultLifecycleProcessor is used.
-	 * @see org.springframework.context.LifecycleProcessor
-	 * @see org.springframework.context.support.DefaultLifecycleProcessor
-	 */
 	public static final String LIFECYCLE_PROCESSOR_BEAN_NAME = "lifecycleProcessor";
 
-	/**
-	 * Name of the ApplicationEventMulticaster bean in the factory.
-	 * If none is supplied, a default SimpleApplicationEventMulticaster is used.
-	 * @see org.springframework.context.event.ApplicationEventMulticaster
-	 * @see org.springframework.context.event.SimpleApplicationEventMulticaster
-	 */
 	public static final String APPLICATION_EVENT_MULTICASTER_BEAN_NAME = "applicationEventMulticaster";
 
 
@@ -242,12 +183,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	// Implementation of ApplicationContext interface
 	//---------------------------------------------------------------------
 
-	/**
-	 * Set the unique id of this application context.
-	 * <p>Default is the object id of the context instance, or the name
-	 * of the context bean if the context is itself defined as a bean.
-	 * @param id the unique id of the context
-	 */
 	@Override
 	public void setId(String id) {
 		this.id = id;
@@ -263,11 +198,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		return "";
 	}
 
-	/**
-	 * Set a friendly name for this context.
-	 * Typically done during initialization of concrete context implementations.
-	 * <p>Default is the object id of the context instance.
-	 */
 	public void setDisplayName(String displayName) {
 		Assert.hasLength(displayName, "Display name must not be empty");
 		this.displayName = displayName;
@@ -282,35 +212,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		return this.displayName;
 	}
 
-	/**
-	 * Return the parent context, or {@code null} if there is no parent
-	 * (that is, this context is the root of the context hierarchy).
-	 */
 	@Override
 	@Nullable
 	public ApplicationContext getParent() {
 		return this.parent;
 	}
 
-	/**
-	 * Set the {@code Environment} for this application context.
-	 * <p>Default value is determined by {@link #createEnvironment()}. Replacing the
-	 * default with this method is one option but configuration through {@link
-	 * #getEnvironment()} should also be considered. In either case, such modifications
-	 * should be performed <em>before</em> {@link #refresh()}.
-	 * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
-	 */
 	@Override
 	public void setEnvironment(ConfigurableEnvironment environment) {
 		this.environment = environment;
 	}
 
-	/**
-	 * Return the {@code Environment} for this application context in configurable
-	 * form, allowing for further customization.
-	 * <p>If none specified, a default environment will be initialized via
-	 * {@link #createEnvironment()}.
-	 */
 	@Override
 	public ConfigurableEnvironment getEnvironment() {
 		if (this.environment == null) {
@@ -319,66 +231,30 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		return this.environment;
 	}
 
-	/**
-	 * Create and return a new {@link StandardEnvironment}.
-	 * <p>Subclasses may override this method in order to supply
-	 * a custom {@link ConfigurableEnvironment} implementation.
-	 */
 	protected ConfigurableEnvironment createEnvironment() {
 		return new StandardEnvironment();
 	}
 
-	/**
-	 * Return this context's internal bean factory as AutowireCapableBeanFactory,
-	 * if already available.
-	 * @see #getBeanFactory()
-	 */
 	@Override
 	public AutowireCapableBeanFactory getAutowireCapableBeanFactory() throws IllegalStateException {
 		return getBeanFactory();
 	}
 
-	/**
-	 * Return the timestamp (ms) when this context was first loaded.
-	 */
 	@Override
 	public long getStartupDate() {
 		return this.startupDate;
 	}
 
-	/**
-	 * Publish the given event to all listeners.
-	 * <p>Note: Listeners get initialized after the MessageSource, to be able
-	 * to access it within listener implementations. Thus, MessageSource
-	 * implementations cannot publish events.
-	 * @param event the event to publish (may be application-specific or a
-	 * standard framework event)
-	 */
 	@Override
 	public void publishEvent(ApplicationEvent event) {
 		publishEvent(event, null);
 	}
 
-	/**
-	 * Publish the given event to all listeners.
-	 * <p>Note: Listeners get initialized after the MessageSource, to be able
-	 * to access it within listener implementations. Thus, MessageSource
-	 * implementations cannot publish events.
-	 * @param event the event to publish (may be an {@link ApplicationEvent}
-	 * or a payload object to be turned into a {@link PayloadApplicationEvent})
-	 */
 	@Override
 	public void publishEvent(Object event) {
 		publishEvent(event, null);
 	}
 
-	/**
-	 * Publish the given event to all listeners.
-	 * @param event the event to publish (may be an {@link ApplicationEvent}
-	 * or a payload object to be turned into a {@link PayloadApplicationEvent})
-	 * @param eventType the resolved event type, if known
-	 * @since 4.2
-	 */
 	protected void publishEvent(Object event, @Nullable ResolvableType eventType) {
 		Assert.notNull(event, "Event must not be null");
 
@@ -413,11 +289,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 	}
 
-	/**
-	 * Return the internal ApplicationEventMulticaster used by the context.
-	 * @return the internal ApplicationEventMulticaster (never {@code null})
-	 * @throws IllegalStateException if the context has not been initialized yet
-	 */
 	ApplicationEventMulticaster getApplicationEventMulticaster() throws IllegalStateException {
 		if (this.applicationEventMulticaster == null) {
 			throw new IllegalStateException("ApplicationEventMulticaster not initialized - " +
@@ -426,11 +297,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		return this.applicationEventMulticaster;
 	}
 
-	/**
-	 * Return the internal LifecycleProcessor used by the context.
-	 * @return the internal LifecycleProcessor (never {@code null})
-	 * @throws IllegalStateException if the context has not been initialized yet
-	 */
 	LifecycleProcessor getLifecycleProcessor() throws IllegalStateException {
 		if (this.lifecycleProcessor == null) {
 			throw new IllegalStateException("LifecycleProcessor not initialized - " +
@@ -439,20 +305,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		return this.lifecycleProcessor;
 	}
 
-	/**
-	 * Return the ResourcePatternResolver to use for resolving location patterns
-	 * into Resource instances. Default is a
-	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver},
-	 * supporting Ant-style location patterns.
-	 * <p>Can be overridden in subclasses, for extended resolution strategies,
-	 * for example in a web environment.
-	 * <p><b>Do not call this when needing to resolve a location pattern.</b>
-	 * Call the context's {@code getResources} method instead, which
-	 * will delegate to the ResourcePatternResolver.
-	 * @return the ResourcePatternResolver for this context
-	 * @see #getResources
-	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
-	 */
 	protected ResourcePatternResolver getResourcePatternResolver() {
 		return new PathMatchingResourcePatternResolver(this);
 	}
@@ -462,14 +314,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	// Implementation of ConfigurableApplicationContext interface
 	//---------------------------------------------------------------------
 
-	/**
-	 * Set the parent of this application context.
-	 * <p>The parent {@linkplain ApplicationContext#getEnvironment() environment} is
-	 * {@linkplain ConfigurableEnvironment#merge(ConfigurableEnvironment) merged} with
-	 * this (child) application context environment if the parent is non-{@code null} and
-	 * its environment is an instance of {@link ConfigurableEnvironment}.
-	 * @see ConfigurableEnvironment#merge(ConfigurableEnvironment)
-	 */
 	@Override
 	public void setParent(@Nullable ApplicationContext parent) {
 		this.parent = parent;
@@ -513,42 +357,66 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
+		// 来个锁，不然 refresh() 还没结束，你又来个启动或销毁容器的操作，那不就乱套了嘛
 		synchronized (this.startupShutdownMonitor) {
 			// Prepare this context for refreshing.
+			// 准备工作，记录下容器的启动时间、标记“已启动”状态、处理配置文件中的占位符
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
+			// 这步比较关键，这步完成后，配置文件就会解析成一个个 Bean 定义，注册到 BeanFactory 中，
+			// 当然，这里说的 Bean 还没有初始化，只是配置信息都提取出来了，
+			// 注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-> beanDefinition 的 map)
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
+			// 设置 BeanFactory 的类加载器，添加几个 BeanPostProcessor，手动注册几个特殊的 bean
 			prepareBeanFactory(beanFactory);
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
+				// 【这里需要知道 BeanFactoryPostProcessor 这个知识点，Bean 如果实现了此接口，
+				// 那么在容器初始化以后，Spring 会负责调用里面的 postProcessBeanFactory 方法。】
+
+				// 这里是提供给子类的扩展点，到这里的时候，所有的 Bean 都加载、注册完成了，但是都还没有初始化
+				// 具体的子类可以在这步的时候添加一些特殊的 BeanFactoryPostProcessor 的实现类或做点什么事
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
+				// 调用 BeanFactoryPostProcessor 各个实现类的 postProcessBeanFactory(factory) 方法
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
+				// 注册 BeanPostProcessor 的实现类，注意看和 BeanFactoryPostProcessor 的区别
+				// 此接口两个方法: postProcessBeforeInitialization 和 postProcessAfterInitialization
+				// 两个方法分别在 Bean 初始化之前和初始化之后得到执行。注意，到这里 Bean 还没初始化
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
+				// 初始化当前 ApplicationContext 的 MessageSource，国际化这里就不展开说了，不然没完没了了
 				initMessageSource();
 
 				// Initialize event multicaster for this context.
+				// 初始化当前 ApplicationContext 的事件广播器，这里也不展开了
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
+				// 从方法名就可以知道，典型的模板方法(钩子方法)，
+				// 具体的子类可以在这里初始化一些特殊的 Bean（在初始化 singleton beans 之前）
 				onRefresh();
 
 				// Check for listener beans and register them.
+				// 注册事件监听器，监听器需要实现 ApplicationListener 接口。这也不是我们的重点，过
 				registerListeners();
 
 				// Instantiate all remaining (non-lazy-init) singletons.
+				// 重点，重点，重点
+				// 初始化所有的 singleton beans
+				//（lazy-init 的除外）
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
+				// 最后，广播事件，ApplicationContext 初始化完成
 				finishRefresh();
 			}
 

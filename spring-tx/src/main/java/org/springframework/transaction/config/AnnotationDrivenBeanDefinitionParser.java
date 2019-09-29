@@ -1,19 +1,3 @@
-/*
- * Copyright 2002-2018 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.springframework.transaction.config;
 
 import org.w3c.dom.Element;
@@ -33,30 +17,17 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser
- * BeanDefinitionParser} implementation that allows users to easily configure
- * all the infrastructure beans required to enable annotation-driven transaction
- * demarcation.
- *
- * <p>By default, all proxies are created as JDK proxies. This may cause some
- * problems if you are injecting objects as concrete classes rather than
- * interfaces. To overcome this restriction you can set the
- * '{@code proxy-target-class}' attribute to '{@code true}', which
- * will result in class-based proxies being created.
- *
  * @author Juergen Hoeller
  * @author Rob Harrop
  * @author Chris Beams
  * @author Stephane Nicoll
  * @since 2.0
+ *
+ * @author wangheng
+ * @date 2019/08/19
  */
 class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 
-	/**
-	 * Parses the {@code <tx:annotation-driven/>} tag. Will
-	 * {@link AopNamespaceUtils#registerAutoProxyCreatorIfNecessary register an AutoProxyCreator}
-	 * with the container as necessary.
-	 */
 	@Override
 	@Nullable
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
@@ -130,6 +101,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 						"org.springframework.transaction.annotation.AnnotationTransactionAttributeSource");
 				sourceDef.setSource(eleSource);
 				sourceDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
+				//注册bean,并使用spring中的定义规则生成beanname
 				String sourceName = parserContext.getReaderContext().registerWithGeneratedName(sourceDef);
 
 				// Create the TransactionInterceptor definition.
@@ -138,6 +110,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 				interceptorDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 				registerTransactionManager(element, interceptorDef);
 				interceptorDef.getPropertyValues().add("transactionAttributeSource", new RuntimeBeanReference(sourceName));
+				//注册bean，并使用spring中的定义规则生成beanname
 				String interceptorName = parserContext.getReaderContext().registerWithGeneratedName(interceptorDef);
 
 				// Create the TransactionAttributeSourceAdvisor definition.
@@ -150,7 +123,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 					advisorDef.getPropertyValues().add("order", element.getAttribute("order"));
 				}
 				parserContext.getRegistry().registerBeanDefinition(txAdvisorBeanName, advisorDef);
-
+				//创建CompositeComponentDefinition
 				CompositeComponentDefinition compositeDef = new CompositeComponentDefinition(element.getTagName(), eleSource);
 				compositeDef.addNestedComponent(new BeanComponentDefinition(sourceDef, sourceName));
 				compositeDef.addNestedComponent(new BeanComponentDefinition(interceptorDef, interceptorName));
