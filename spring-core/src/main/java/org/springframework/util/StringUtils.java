@@ -30,8 +30,6 @@ import org.springframework.lang.Nullable;
  * @author Sam Brannen
  * @author Brian Clozel
  * @since 16 April 2001
- *
- * @author wangheng
  * @date 2019/08/16
  */
 public abstract class StringUtils {

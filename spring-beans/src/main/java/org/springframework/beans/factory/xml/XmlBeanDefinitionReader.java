@@ -51,19 +51,6 @@ import org.springframework.util.xml.SimpleSaxErrorHandler;
 import org.springframework.util.xml.XmlValidationModeDetector;
 
 /**
- * Bean definition reader for XML bean definitions.
- * Delegates the actual XML document reading to an implementation
- * of the {@link BeanDefinitionDocumentReader} interface.
- *
- * <p>Typically applied to a
- * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
- * or a {@link org.springframework.context.support.GenericApplicationContext}.
- *
- * <p>This class loads a DOM document and applies the BeanDefinitionDocumentReader to it.
- * The document reader will register each bean definition with the given bean factory,
- * talking to the latter's implementation of the
- * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} interface.
- *
  * @author Juergen Hoeller
  * @author Rob Harrop
  * @author Chris Beams
@@ -74,6 +61,8 @@ import org.springframework.util.xml.XmlValidationModeDetector;
  * @see BeanDefinitionRegistry
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
  * @see org.springframework.context.support.GenericApplicationContext
+ * @date 20200315
+ * 资源文件读取、解析及注册
  */
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
@@ -294,10 +283,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 
 	/**
-	 * Load bean definitions from the specified XML file.
-	 * @param resource the resource descriptor for the XML file
-	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * 资源加载切入点
 	 */
 	@Override
 	public int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException {
@@ -310,27 +296,32 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * allowing to specify an encoding to use for parsing the file
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * 装载资源
 	 */
 	public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefinitionStoreException {
 		Assert.notNull(encodedResource, "EncodedResource must not be null");
 		if (logger.isTraceEnabled()) {
 			logger.trace("Loading XML bean definitions from " + encodedResource);
 		}
-
+		//resourcesCurrentlyBeingLoaded是一个ThreadLocal对象
 		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
+		//如果是空的，那么就初始化一个set
 		if (currentResources == null) {
 			currentResources = new HashSet<>(4);
 			this.resourcesCurrentlyBeingLoaded.set(currentResources);
 		}
+		//如果set集合添加不进去，那么抛出异常,说明已经加载过了，防止重复加载
 		if (!currentResources.add(encodedResource)) {
 			throw new BeanDefinitionStoreException(
 					"Detected cyclic loading of " + encodedResource + " - check your import definitions!");
 		}
 		try {
+			//转换成流
 			InputStream inputStream = encodedResource.getResource().getInputStream();
 			try {
 				InputSource inputSource = new InputSource(inputStream);
 				if (encodedResource.getEncoding() != null) {
+					//设置编码
 					inputSource.setEncoding(encodedResource.getEncoding());
 				}
 				return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
@@ -389,7 +380,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			throws BeanDefinitionStoreException {
 
 		try {
+			//获取Document 实例
 			Document doc = doLoadDocument(inputSource, resource);
+			//注册到ioc容器中
 			int count = registerBeanDefinitions(doc, resource);
 			if (logger.isDebugEnabled()) {
 				logger.debug("Loaded " + count + " bean definitions from " + resource);
@@ -508,9 +501,16 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see BeanDefinitionDocumentReader#registerBeanDefinitions
 	 */
 	public int registerBeanDefinitions(Document doc, Resource resource) throws BeanDefinitionStoreException {
+		//利用反射创建对象
 		BeanDefinitionDocumentReader documentReader = createBeanDefinitionDocumentReader();
+		//registry是不是有点眼熟XmlBeanDefinitionReader extends AbstractBeanDefinitionReader
+		//在创建XmlBeanDefinitionReader的时候初始化了registry和environment
+		//也就是DefaultListableBeanFactory
+		//获取容器总数量
 		int countBefore = getRegistry().getBeanDefinitionCount();
+		//将Resource包装成XmlReaderContext
 		documentReader.registerBeanDefinitions(doc, createReaderContext(resource));
+		//返回成功的个数beanDefinitionMap新增的数量
 		return getRegistry().getBeanDefinitionCount() - countBefore;
 	}
 

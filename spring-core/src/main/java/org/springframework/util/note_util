@@ -1,0 +1,7 @@
+各种工具类##
+ClassUtils:Class类工具，提供操作class类的方法。
+比如：获知类、方法上是否有注解，获取类注解，获取某package下所有class等。提供class缓存
+CollectionUtils:集合工具类,提供集合的转换、查找、判空等方法。
+DigestUtils:对java.serurity.MessageDigest的封装，提供单向加密方法。
+ReflectionUtils：反射工具类，提供各种反射操作，并包装了反射过程中可能出现的异常。
+SystemPropertyUtils：placeholder解析工具类

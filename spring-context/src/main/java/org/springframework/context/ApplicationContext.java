@@ -10,11 +10,10 @@ import org.springframework.lang.Nullable;
 /**
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @author wangheng
- * @date 2019/09/24
  * @see ConfigurableApplicationContext
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.core.io.ResourceLoader
+ * @date 2019/09/24
  */
 public interface ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
 		MessageSource, ApplicationEventPublisher, ResourcePatternResolver {

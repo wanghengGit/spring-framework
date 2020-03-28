@@ -27,45 +27,17 @@ import org.springframework.core.io.ProtocolResolver;
 import org.springframework.lang.Nullable;
 
 /**
- * SPI interface to be implemented by most if not all application contexts.
- * Provides facilities to configure an application context in addition
- * to the application context client methods in the
- * {@link org.springframework.context.ApplicationContext} interface.
- *
- * <p>Configuration and lifecycle methods are encapsulated here to avoid
- * making them obvious to ApplicationContext client code. The present
- * methods should only be used by startup and shutdown code.
- *
  * @author Juergen Hoeller
  * @author Chris Beams
  * @since 03.11.2003
+ * @date 20200324
  */
 public interface ConfigurableApplicationContext extends ApplicationContext, Lifecycle, Closeable {
 
-	/**
-	 * Any number of these characters are considered delimiters between
-	 * multiple context config paths in a single String value.
-	 * @see org.springframework.context.support.AbstractXmlApplicationContext#setConfigLocation
-	 * @see org.springframework.web.context.ContextLoader#CONFIG_LOCATION_PARAM
-	 * @see org.springframework.web.servlet.FrameworkServlet#setContextConfigLocation
-	 */
 	String CONFIG_LOCATION_DELIMITERS = ",; \t\n";
 
-	/**
-	 * Name of the ConversionService bean in the factory.
-	 * If none is supplied, default conversion rules apply.
-	 * @since 3.0
-	 * @see org.springframework.core.convert.ConversionService
-	 */
 	String CONVERSION_SERVICE_BEAN_NAME = "conversionService";
 
-	/**
-	 * Name of the LoadTimeWeaver bean in the factory. If such a bean is supplied,
-	 * the context will use a temporary ClassLoader for type matching, in order
-	 * to allow the LoadTimeWeaver to process all actual bean classes.
-	 * @since 2.5
-	 * @see org.springframework.instrument.classloading.LoadTimeWeaver
-	 */
 	String LOAD_TIME_WEAVER_BEAN_NAME = "loadTimeWeaver";
 
 	/**

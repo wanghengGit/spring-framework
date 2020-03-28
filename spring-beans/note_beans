@@ -1,0 +1,49 @@
+spring-beans负责实现Spring框架的IOC模块
+Beans包的核心功能就是对Bean对象生命周期的管理，包含Bean的定义、解析和创建等
+
+根据项目的API文档及目录结构，大致可以将beans项目分为五个模块：
+
+org.springframework.beans :
+对Java Beans进行的扩展，以操作JavaBeans对象，扩展了BeanInfo、PropertyEditor等
+org.springframework.beans.factory
+轻量级的Ioc容器的核心实现
+org.springframework.beans.propertyeditors
+转换属性类型的属性编辑器的实现
+org.springframework.beans.support
+支持扩展包，对Beans的sort、hold等操作的支持
+org.springframework.beans.annotation
+支持JavaBeans在注解驱动下工作
+
+
+一、概述
+打开spring-beans.gradle，可以看到spring-beans模块只依赖spring-core模块，因此我们第二个先分析这个模块。
+通过package-info.java，我们可以得知：This package contains interfaces and classes for manipulating Java beans. 意思就是这个目录包含了一些接口和类，用来控制Java bean。
+
+二、目录分析
+2.1）根目录
+主要是bean属性访问相关的接口和类
+2.2）annotation目录
+无内容
+2.3）factory目录
+主要是Aware接口、BeanFactory接口以及其子接口，Aware有3个子接口：BeanNameAware、BeanFactoryAware、BeanClassLoadAware，Aware结尾的接口功能，请自行百度。BeanFactory体系是最重要的，需要后面专题来讲。
+2.4）Factory/config目录
+非常重要！！！包含BeanDefinition、BeanPostProcessor、ConfigurableBeanFactory、ConfigurableListableBeanFactory
+2.5）Factory/support目录
+作用：Factory目录的支持类，抽象工厂、BeanDefinition的读取、注册、回调，自动发现。
+包含AutowireCandidateResolver、BeanDefinitionReader、BeanDefinitionRegistry、BeanDefinitionRegistryPostProcessor、BeanNameGenerator、InstantiationStrategy、MergedBeanDefinitionPostProcessor以及他们相应的抽象类、帮助类。
+2.6）Factory/xml目录
+对xml格式定义的bean读取、处理。
+三、详细分析
+3.1）重要的接口
+PropertyEditorRegistry：封装了PropertyEditor的注册方法
+PropertyAccessor：属性访问器，可以访问对象的
+TypeConverter：类型转换，会委托给TypeConverterDelegate类去做，方法内会利用core模块的ConversionService去进行转换。上一篇文章我们提到过这个。
+ConfigurablePropertyAccessor：封装了可以配置PropertyAccessor的接口
+BeanWrapper：Spring底层Java Beans基础设施的中心接口。父类是ConfigurablePropertyAccessor，唯一的实现类：BeanWrapperImpl
+PropertyValues：持有一个或者多个PropertyValue对象，
+3.2）重要的类
+AbstractPropertyAccessor：
+PropertyValue：包含一个属性的名字和一个值
+BeanWrapperImpl：
+3.3）异常相关
+我们这里不关注bean的异常体系，不是重点。

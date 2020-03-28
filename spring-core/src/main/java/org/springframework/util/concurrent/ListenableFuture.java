@@ -31,6 +31,8 @@ import java.util.concurrent.Future;
  * @author Juergen Hoeller
  * @since 4.0
  * @param <T> the result type returned by this Future's {@code get} method
+ * @date 20200325
+ * 增加扩展功能使用addCallback()方法支持增加回调函数
  */
 public interface ListenableFuture<T> extends Future<T> {
 

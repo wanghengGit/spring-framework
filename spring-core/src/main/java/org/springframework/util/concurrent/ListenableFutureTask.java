@@ -29,6 +29,8 @@ import org.springframework.lang.Nullable;
  * @author Arjen Poutsma
  * @since 4.0
  * @param <T> the result type returned by this Future's {@code get} method
+ * @date 20200325
+ * FutureTask子类，主要是为了增加回调函数注册和回调函数调用功能。该类重写了done()方法，执行对回调函数队列的调用。
  */
 public class ListenableFutureTask<T> extends FutureTask<T> implements ListenableFuture<T> {
 

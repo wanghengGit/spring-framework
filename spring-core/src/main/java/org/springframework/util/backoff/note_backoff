@@ -1,0 +1,1 @@
+Spring封装的退避算法，用于获取重试间隔。两个实现类，FixedBackOff是按照固定时间间隔重试，ExponentialBackOff是间隔以指数方式增长。

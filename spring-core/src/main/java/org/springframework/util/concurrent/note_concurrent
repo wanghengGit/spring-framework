@@ -1,0 +1,1 @@
+Spring中对java.util.concurrent.Future的扩展，支持Future适配，FutureTask添加多个回调函数
