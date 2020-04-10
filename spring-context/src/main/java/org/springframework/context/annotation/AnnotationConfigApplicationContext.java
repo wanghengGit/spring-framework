@@ -50,6 +50,7 @@ import org.springframework.util.Assert;
  * @see ClassPathBeanDefinitionScanner
  * @see org.springframework.context.support.GenericXmlApplicationContext
  * @date 20200324
+ * 当我们使用注解配置容器对象时，需要使用此类来创建 spring 容器。它用来读取注解。
  */
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
 

@@ -162,6 +162,8 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * @see org.springframework.core.env.PropertySource
  * @see org.springframework.core.env.ConfigurableEnvironment#getPropertySources()
  * @see org.springframework.core.env.MutablePropertySources
+ * @date 20200403
+ * 作用在类上，加载指定路径资源到Environment，从而实现注入。
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

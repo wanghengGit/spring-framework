@@ -34,6 +34,12 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * @author Juergen Hoeller
  * @since 2.5
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#getMergedBeanDefinition
+ * @date 20200410
+ * 该接口用来合并BeanDefinition，也是对BeanDefinition处理一种扩展接口。
+ * 最常用的使用场景：AutowiredAnnotationBeanPostProcessor实现类中，通过该接口解析当前 bean 中所有
+ * 指定注解类型的属性：
+ * 默认解析上两种注解的属性，将其描述信息合并到当前对象的beanDefinition中，在后面属性填充populateBean的过程中，会取出这些对象，进行注入。
+ * 调用点在AbstractAutowireCapableBeanFactory中：
  */
 public interface MergedBeanDefinitionPostProcessor extends BeanPostProcessor {
 

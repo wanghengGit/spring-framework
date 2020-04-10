@@ -166,6 +166,7 @@ class ConfigurationClassParser {
 		for (BeanDefinitionHolder holder : configCandidates) {
 			BeanDefinition bd = holder.getBeanDefinition();
 			try {
+				//是否是注解类
 				if (bd instanceof AnnotatedBeanDefinition) {
 					parse(((AnnotatedBeanDefinition) bd).getMetadata(), holder.getBeanName());
 				}
@@ -184,7 +185,6 @@ class ConfigurationClassParser {
 						"Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
-
 		this.deferredImportSelectorHandler.process();
 	}
 
@@ -240,6 +240,7 @@ class ConfigurationClassParser {
 		}
 
 		// Recursively process the configuration class and its superclass hierarchy.
+		//循环处理bean，如果有父类，则处理父类。直至结束
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
 			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
@@ -256,16 +257,17 @@ class ConfigurationClassParser {
 	 * @param configClass the configuration class being build
 	 * @param sourceClass a source class
 	 * @return the superclass, or {@code null} if none found or previously processed
+	 * TODO 该方法可以说是 spring 框架支持注解配置的核心逻辑了
 	 */
 	@Nullable
 	protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass)
 			throws IOException {
-
+		//处理内部类逻辑，由于传来的参数是我们的启动类，不含内部类，所以跳过。
 		if (configClass.getMetadata().isAnnotated(Component.class.getName())) {
 			// Recursively process any member (nested) classes first
 			processMemberClasses(configClass, sourceClass);
 		}
-
+		//针对属性配置的解析
 		// Process any @PropertySource annotations
 		for (AnnotationAttributes propertySource : AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), PropertySources.class,
@@ -278,7 +280,7 @@ class ConfigurationClassParser {
 						"]. Reason: Environment must implement ConfigurableEnvironment");
 			}
 		}
-
+		//这里是根据启动类 @ComponentScan 注解来扫描项目中的bean
 		// Process any @ComponentScan annotations
 		Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);
@@ -289,12 +291,15 @@ class ConfigurationClassParser {
 				Set<BeanDefinitionHolder> scannedBeanDefinitions =
 						this.componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());
 				// Check the set of scanned definitions for any further config classes and parse recursively if needed
+				//遍历我们项目中的bean，如果是注解定义的bean，则进一步解析
 				for (BeanDefinitionHolder holder : scannedBeanDefinitions) {
 					BeanDefinition bdCand = holder.getBeanDefinition().getOriginatingBeanDefinition();
 					if (bdCand == null) {
 						bdCand = holder.getBeanDefinition();
 					}
+					//判断是否是注解bean
 					if (ConfigurationClassUtils.checkConfigurationClassCandidate(bdCand, this.metadataReaderFactory)) {
+						//TODO 这里是关键，递归解析。所有的bean，如果有注解，会进一步解析注解中包含的bean
 						parse(bdCand.getBeanClassName(), holder.getBeanName());
 					}
 				}
@@ -302,8 +307,9 @@ class ConfigurationClassParser {
 		}
 
 		// Process any @Import annotations
+		//这里又是一个递归解析，获取导入的配置类。很多情况下，导入的配置类中会同样包含导入类注解
 		processImports(configClass, sourceClass, getImports(sourceClass), true);
-
+		//解析导入的 xml 配置类
 		// Process any @ImportResource annotations
 		AnnotationAttributes importResource =
 				AnnotationConfigUtils.attributesFor(sourceClass.getMetadata(), ImportResource.class);
@@ -324,7 +330,7 @@ class ConfigurationClassParser {
 
 		// Process default methods on interfaces
 		processInterfaces(configClass, sourceClass);
-
+		//如果该类有父类，则继续返回。上层方法判断不为空，则继续递归执行
 		// Process superclass, if any
 		if (sourceClass.getMetadata().hasSuperClass()) {
 			String superclass = sourceClass.getMetadata().getSuperClassName();
@@ -337,6 +343,7 @@ class ConfigurationClassParser {
 		}
 
 		// No superclass -> processing is complete
+		//递归实现，superclass为空，则结束递归中的循环
 		return null;
 	}
 
@@ -507,6 +514,7 @@ class ConfigurationClassParser {
 
 	/**
 	 * Returns {@code @Import} class, considering all meta-annotations.
+	 * 可以看到我自定义的bean以导入的方式被加载进去了。另外processImports方法执行逻辑和上述parse方法类似，同样采用递归处理
 	 */
 	private Set<SourceClass> getImports(SourceClass sourceClass) throws IOException {
 		Set<SourceClass> imports = new LinkedHashSet<>();
@@ -542,6 +550,9 @@ class ConfigurationClassParser {
 		}
 	}
 
+	/**
+	 * 获取导入配置类的逻辑
+	 */
 	private void processImports(ConfigurationClass configClass, SourceClass currentSourceClass,
 			Collection<SourceClass> importCandidates, boolean checkForCircularImports) {
 

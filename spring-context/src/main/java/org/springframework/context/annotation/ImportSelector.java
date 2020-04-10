@@ -44,6 +44,7 @@ import org.springframework.core.type.AnnotationMetadata;
  * @see Import
  * @see ImportBeanDefinitionRegistrar
  * @see Configuration
+ * @date 20200406
  */
 public interface ImportSelector {
 

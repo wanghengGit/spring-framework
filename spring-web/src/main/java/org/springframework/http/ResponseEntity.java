@@ -69,6 +69,7 @@ import org.springframework.util.ObjectUtils;
  * @since 3.0.2
  * @param <T> the body type
  * @see #getStatusCode()
+ * @date 20200331
  */
 public class ResponseEntity<T> extends HttpEntity<T> {
 

@@ -40,6 +40,8 @@ import org.springframework.util.StringUtils;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @since 1.1
+ * @date 20200329
+ * 策略模式
  */
 public class SimpleInstantiationStrategy implements InstantiationStrategy {
 

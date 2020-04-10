@@ -212,6 +212,9 @@ import org.springframework.core.annotation.AliasFor;
  * @see org.springframework.stereotype.Component
  * @see org.springframework.beans.factory.annotation.Autowired
  * @see org.springframework.beans.factory.annotation.Value
+ * @date 20200403
+ * 作用在方法和注解上，作用在方法上标记此处会生成一个beanDefinition。配合Profile, Scope, Lazy,
+ * DependsOn, Primary, Order使用，描述definition行为
  */
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)

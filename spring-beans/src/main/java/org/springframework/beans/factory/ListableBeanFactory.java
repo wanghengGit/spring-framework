@@ -11,10 +11,10 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @since 16 April 2001
- * @author wangheng
  * @date 2019/09/24
  * @see HierarchicalBeanFactory
  * @see BeanFactoryUtils
+ * @date 20200403
  */
 public interface ListableBeanFactory extends BeanFactory {
 

@@ -44,8 +44,9 @@ import org.springframework.util.StringUtils;
  * @see BeanNameAutoProxyCreator
  * @see DefaultAdvisorAutoProxyCreator
  *
- * @author wangheng
  * @date 2019/08/16
+ * Spring 为Spring AOP 模块暴露的可扩展抽象类，也是 AOP 中最核心的抽象类。
+ * Nepxion Matrix 框架便是基于此类对AOP进行扩展和增强。
  */
 @SuppressWarnings("serial")
 public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport

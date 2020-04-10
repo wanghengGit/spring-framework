@@ -45,6 +45,10 @@ import org.springframework.util.ReflectionUtils;
  *
  * @author Juergen Hoeller
  * @since 2.5
+ * @date 20200403
+ * InjectionMetadata在这个类里头封装了依赖的bean与被依赖的bean的信息，
+ * 比如orderCcontroller 依赖orderService，需要把orderService 注入到orderController
+ * 其中injectedElements就是所有需要被注入的bean
  */
 public class InjectionMetadata {
 

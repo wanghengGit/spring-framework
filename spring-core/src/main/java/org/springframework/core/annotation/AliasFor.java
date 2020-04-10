@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 
 /**
  * @author Sam Brannen
- * @author wangheng
  * @date 2019/09/29
  * @since 4.2
  * @see MergedAnnotations

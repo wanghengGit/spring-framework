@@ -11,12 +11,12 @@ import org.springframework.core.annotation.AliasFor;
 /**
  * @author Arjen Poutsma
  * @author Juergen Hoeller
- * @author wangheng
  * @date 2019/09/29
- * @since 2.5
+ * 用于标注控制层组件
  * @see Component
  * @see org.springframework.web.bind.annotation.RequestMapping
  * @see org.springframework.context.annotation.ClassPathBeanDefinitionScanner
+ * @since 2.5
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
@@ -27,6 +27,7 @@ public @interface Controller {
 	/**
 	 * The value may indicate a suggestion for a logical component name,
 	 * to be turned into a Spring bean in case of an autodetected component.
+	 *
 	 * @return the suggested component name, if any (or empty String otherwise)
 	 */
 	@AliasFor(annotation = Component.class)

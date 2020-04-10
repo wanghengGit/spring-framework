@@ -82,6 +82,8 @@ import org.springframework.util.ClassUtils;
  * @author Juergen Hoeller
  * @author Phillip Webb
  * @since 3.0
+ * @date 20200410
+ * internalConfigurationAnnotationProcessor为bean名称，容器中真正的类则是ConfigurationClassPostProcessor
  */
 public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor,
 		PriorityOrdered, ResourceLoaderAware, BeanClassLoaderAware, EnvironmentAware {
@@ -322,6 +324,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		Set<BeanDefinitionHolder> candidates = new LinkedHashSet<>(configCandidates);
 		Set<ConfigurationClass> alreadyParsed = new HashSet<>(configCandidates.size());
 		do {
+			//首先获得ConfigurationClassParser，这个是所有配置类的解析类，比较核心。
+			// 所有的解析逻辑在parser.parse(candidates);中
 			parser.parse(candidates);
 			parser.validate();
 

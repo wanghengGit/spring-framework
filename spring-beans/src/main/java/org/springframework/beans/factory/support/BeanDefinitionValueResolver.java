@@ -108,6 +108,7 @@ class BeanDefinitionValueResolver {
 	public Object resolveValueIfNecessary(Object argName, @Nullable Object value) {
 		// We must check each value to see whether it requires a runtime reference
 		// to another bean to be resolved.
+		// Bean 类型
 		if (value instanceof RuntimeBeanReference) {
 			RuntimeBeanReference ref = (RuntimeBeanReference) value;
 			return resolveReference(argName, ref);
@@ -166,18 +167,22 @@ class BeanDefinitionValueResolver {
 					elementType = Object.class;
 				}
 			}
+			// 处理数组
 			return resolveManagedArray(argName, (List<?>) value, elementType);
 		}
 		else if (value instanceof ManagedList) {
 			// May need to resolve contained runtime references.
+			// 处理list
 			return resolveManagedList(argName, (List<?>) value);
 		}
 		else if (value instanceof ManagedSet) {
 			// May need to resolve contained runtime references.
+			// 处理set
 			return resolveManagedSet(argName, (Set<?>) value);
 		}
 		else if (value instanceof ManagedMap) {
 			// May need to resolve contained runtime references.
+			// 处理map
 			return resolveManagedMap(argName, (Map<?, ?>) value);
 		}
 		else if (value instanceof ManagedProperties) {

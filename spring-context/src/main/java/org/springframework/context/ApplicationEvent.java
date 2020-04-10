@@ -26,6 +26,8 @@ import java.util.EventObject;
  * @author Juergen Hoeller
  * @see org.springframework.context.ApplicationListener
  * @see org.springframework.context.event.EventListener
+ * @date 20200329
+ * 观察者模式
  */
 public abstract class ApplicationEvent extends EventObject {
 

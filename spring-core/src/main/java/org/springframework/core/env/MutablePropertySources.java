@@ -38,6 +38,8 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @since 3.1
  * @see PropertySourcesPropertyResolver
+ * @date 20200410
+ *上面有个核心关键类出现了，MutablePropertySources，mutable中文是可变的意思，该类封装了属性资源集合
  */
 public class MutablePropertySources implements PropertySources {
 

@@ -48,6 +48,8 @@ import org.springframework.core.annotation.AliasFor;
  * @since 3.0
  * @see Configuration
  * @see Import
+ * @date 20200403
+ * 加载一个xml资源，和spring xml配置里import语义相同
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

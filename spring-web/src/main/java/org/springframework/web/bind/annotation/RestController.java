@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 /**
  * @author Rossen Stoyanchev
  * @author Sam Brannen
- * @author wangheng
  * @date 2019/09/29
  * @since 4.0
  */

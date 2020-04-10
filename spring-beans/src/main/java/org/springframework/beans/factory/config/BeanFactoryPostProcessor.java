@@ -41,6 +41,11 @@ import org.springframework.beans.BeansException;
  * @since 06.07.2003
  * @see BeanPostProcessor
  * @see PropertyResourceConfigurer
+ * @date 20200410
+ * BeanFactoryPostProcessor和BeanPostProcessor 接口比较相似，从字面不难看出，前者多了一个 factory，
+ * 所以该接口正是beanFactory的扩展接口，使用场景：一般用来在读取所有的beanDefinition信息之后，实例化之前，
+ * 通过该接口可进一步自行处理，比如修改beanDefinition等。
+ * 调用点在上面第一个扩展接口之后，也在PostProcessorRegistrationDelegate中
  */
 @FunctionalInterface
 public interface BeanFactoryPostProcessor {

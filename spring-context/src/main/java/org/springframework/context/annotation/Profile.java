@@ -95,6 +95,8 @@ import org.springframework.core.env.Profiles;
  * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
  * @see Conditional
  * @see org.springframework.test.context.ActiveProfiles
+ * @date 20200403
+ * 修饰类或方法，用于分类偏好（如区分环境），应用启动时决定启用哪些profile。
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

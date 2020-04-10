@@ -51,6 +51,8 @@ import org.springframework.core.type.filter.TypeFilter;
  * @author Sam Brannen
  * @since 3.1
  * @see Configuration
+ * @date 20200403
+ * 作用在类上，声明需要对包路径下资源进行扫描，效果等同于<context:component-scan>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

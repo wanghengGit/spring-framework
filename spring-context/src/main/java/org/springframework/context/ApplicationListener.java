@@ -35,6 +35,8 @@ import java.util.EventListener;
  * @see org.springframework.context.ApplicationEvent
  * @see org.springframework.context.event.ApplicationEventMulticaster
  * @see org.springframework.context.event.EventListener
+ * @date 20200329
+ * 观察者（Observer）模式
  */
 @FunctionalInterface
 public interface ApplicationListener<E extends ApplicationEvent> extends EventListener {

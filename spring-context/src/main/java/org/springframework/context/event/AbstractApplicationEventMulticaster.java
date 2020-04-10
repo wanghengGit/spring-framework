@@ -59,6 +59,7 @@ import org.springframework.util.ObjectUtils;
  * @since 1.2.3
  * @see #getApplicationListeners(ApplicationEvent, ResolvableType)
  * @see SimpleApplicationEventMulticaster
+ * @date 20200406
  */
 public abstract class AbstractApplicationEventMulticaster
 		implements ApplicationEventMulticaster, BeanClassLoaderAware, BeanFactoryAware {
@@ -111,6 +112,7 @@ public abstract class AbstractApplicationEventMulticaster
 			if (singletonTarget instanceof ApplicationListener) {
 				this.defaultRetriever.applicationListeners.remove(singletonTarget);
 			}
+			//内部类对象
 			this.defaultRetriever.applicationListeners.add(listener);
 			this.retrieverCache.clear();
 		}

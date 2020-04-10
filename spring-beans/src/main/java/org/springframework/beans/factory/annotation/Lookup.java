@@ -52,6 +52,8 @@ import java.lang.annotation.Target;
  * @since 4.1
  * @see org.springframework.beans.factory.BeanFactory#getBean(Class, Object...)
  * @see org.springframework.beans.factory.BeanFactory#getBean(String, Object...)
+ * @date 20200403
+ * 修饰方法，被修饰的方法会被动态代理重构，效果同xml中的lookup-method。
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

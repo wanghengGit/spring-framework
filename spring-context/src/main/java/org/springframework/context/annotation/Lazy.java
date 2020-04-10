@@ -55,6 +55,8 @@ import java.lang.annotation.Target;
  * @see Bean
  * @see Configuration
  * @see org.springframework.stereotype.Component
+ * @date 20200403
+ * @Lazy(true) 表示延迟初始化
  */
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

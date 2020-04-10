@@ -37,6 +37,8 @@ import org.springframework.core.annotation.AliasFor;
  * @author Sam Brannen
  * @since 3.1
  * @see CacheConfig
+ * @date 20200403
+ * 用来标记要清空缓存的方法，当这个方法被调用后，即会清空缓存。 @CacheEvict(value=”UserCache”)
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

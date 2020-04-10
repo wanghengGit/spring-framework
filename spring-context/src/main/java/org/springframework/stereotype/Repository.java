@@ -54,6 +54,8 @@ import org.springframework.core.annotation.AliasFor;
  * @see Service
  * @see org.springframework.dao.DataAccessException
  * @see org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor
+ * @date 20200403
+ * 用于标注数据访问组件
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

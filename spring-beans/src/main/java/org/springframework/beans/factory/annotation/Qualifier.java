@@ -32,6 +32,7 @@ import java.lang.annotation.Target;
  * @author Juergen Hoeller
  * @since 2.5
  * @see Autowired
+ * @date 20200403
  */
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)

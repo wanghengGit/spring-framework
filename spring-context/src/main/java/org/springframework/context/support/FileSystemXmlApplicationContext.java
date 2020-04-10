@@ -37,6 +37,7 @@ import org.springframework.lang.Nullable;
  * @see #getResourceByPath
  * @see GenericApplicationContext
  * @date 20200324
+ * 从磁盘上加载配置文件,配置文件可以在磁盘的任意位置
  */
 public class FileSystemXmlApplicationContext extends AbstractXmlApplicationContext {
 

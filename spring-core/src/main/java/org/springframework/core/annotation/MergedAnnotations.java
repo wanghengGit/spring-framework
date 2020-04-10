@@ -127,6 +127,7 @@ import org.springframework.lang.Nullable;
  * @see MergedAnnotationCollectors
  * @see MergedAnnotationPredicates
  * @see MergedAnnotationSelectors
+ * @date 20200410
  */
 public interface MergedAnnotations extends Iterable<MergedAnnotation<Annotation>> {
 

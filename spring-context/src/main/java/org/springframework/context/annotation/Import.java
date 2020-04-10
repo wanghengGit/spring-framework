@@ -47,6 +47,8 @@ import java.lang.annotation.Target;
  * @see Configuration
  * @see ImportSelector
  * @see ImportResource
+ * @date 20200403
+ * 加载一个被@Configuration修饰的class
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

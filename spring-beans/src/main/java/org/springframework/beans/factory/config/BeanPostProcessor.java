@@ -21,6 +21,11 @@ public interface BeanPostProcessor {
 		return bean;
 	}
 
+	/**
+	 * 该方法Spring IOC过程中最后一个常用的扩展点，用于 bean 初始化之后的后置处理。
+	 * IOC 流程执行到此处，一个完整的 bean 已经创建结束，可在此处对 bean 进行包装或者代理。
+	 * Spring AOP 原理便是基于此扩展点实现，实现方式在AbstractAutoProxyCreator中：
+	 */
 	@Nullable
 	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		return bean;

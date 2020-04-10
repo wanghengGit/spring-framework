@@ -56,6 +56,7 @@ import org.springframework.util.ClassUtils;
  * @see CommonAnnotationBeanPostProcessor
  * @see org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
  * @see org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor
+ * @date 20200410
  */
 public abstract class AnnotationConfigUtils {
 
@@ -159,7 +160,8 @@ public abstract class AnnotationConfigUtils {
 		}
 
 		Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);
-
+		//将 internalConfigurationAnnotationProcessor 对应的类包装成 RootBeanDefinition 加载到容器
+		//到这里，答案清晰浮现。internalConfigurationAnnotationProcessor为bean名称，容器中真正的类则是ConfigurationClassPostProcessor
 		if (!registry.containsBeanDefinition(CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class);
 			def.setSource(source);

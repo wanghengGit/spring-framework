@@ -57,6 +57,8 @@ import org.springframework.core.annotation.AliasFor;
  * @since 2.5
  * @see org.springframework.stereotype.Component
  * @see org.springframework.context.annotation.Bean
+ * @date 20200403
+ * 默认是"singleton"即单例
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

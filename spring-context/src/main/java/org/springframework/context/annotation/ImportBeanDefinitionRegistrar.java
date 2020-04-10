@@ -48,6 +48,9 @@ import org.springframework.core.type.AnnotationMetadata;
  * @see Import
  * @see ImportSelector
  * @see Configuration
+ * @date 20200410
+ * 该接口主要用来注册beanDefinition。很多三方框架集成Spring 的时候，都会通过该接口，实现扫描指定的类，然后注册到spring 容器中。
+ * 比如 Mybatis 中的Mapper接口，springCloud中的 FeignClient 接口，都是通过该接口实现的自定义注册逻辑
  */
 public interface ImportBeanDefinitionRegistrar {
 

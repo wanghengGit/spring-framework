@@ -50,6 +50,7 @@ package org.springframework.core.env;
  * @see ConfigurableEnvironment
  * @see SystemEnvironmentPropertySource
  * @see org.springframework.web.context.support.StandardServletEnvironment
+ * @date 20200410
  */
 public class StandardEnvironment extends AbstractEnvironment {
 
@@ -72,6 +73,8 @@ public class StandardEnvironment extends AbstractEnvironment {
 	 * @see AbstractEnvironment#customizePropertySources(MutablePropertySources)
 	 * @see #getSystemProperties()
 	 * @see #getSystemEnvironment()
+	 * 可以看到放入顺序是永远放在最后面，也就是先加入的在前面。systemEnvironment是在systemProperties前面，
+	 * 这点很重要。因为前面的配置会覆盖后面的配置，也就是说系统变量中的配置比系统环境变量中的配置优先级更高
 	 */
 	@Override
 	protected void customizePropertySources(MutablePropertySources propertySources) {

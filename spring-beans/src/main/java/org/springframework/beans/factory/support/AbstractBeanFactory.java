@@ -68,6 +68,7 @@ import org.springframework.util.StringValueResolver;
  * @author Costin Leau
  * @author Chris Beams
  * @author Phillip Webb
+ * @date 2019/09/29
  * @since 15 April 2001
  * @see #getBeanDefinition
  * @see #createBean
@@ -155,6 +156,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		return doGetBean(name, requiredType, args, false);
 	}
 
+	/**
+	 * TODO 获取bean
+	 * doCreateBean是依赖注入的入口，也是我们本次要谈的核心函数。该方法具体实现在AbstractAutowireCapableBeanFactory类
+	 * @throws BeansException
+	 */
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,
 			@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {

@@ -45,6 +45,8 @@ import java.lang.annotation.Target;
  *
  * @author Juergen Hoeller
  * @since 3.0
+ * @date 20200403
+ * 定义Bean初始化及销毁时的顺序
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

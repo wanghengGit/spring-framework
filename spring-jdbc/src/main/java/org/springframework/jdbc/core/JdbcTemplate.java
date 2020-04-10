@@ -96,6 +96,8 @@ import org.springframework.util.StringUtils;
  * @see RowCallbackHandler
  * @see RowMapper
  * @see org.springframework.jdbc.support.SQLExceptionTranslator
+ * @date 20200329
+ * 模板方法模式
  */
 public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
@@ -315,6 +317,13 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	// Methods dealing with a plain java.sql.Connection
 	//-------------------------------------------------------------------------
 
+	/**
+	 * 模板方法（Template Method）模式
+	 * @param action a callback object that specifies the action
+	 * @param <T>
+	 * @return
+	 * @throws DataAccessException
+	 */
 	@Override
 	@Nullable
 	public <T> T execute(ConnectionCallback<T> action) throws DataAccessException {

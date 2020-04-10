@@ -41,6 +41,8 @@ import org.springframework.web.context.ConfigurableWebEnvironment;
  * @author Chris Beams
  * @since 3.1
  * @see StandardEnvironment
+ * @date 20200410
+ * StandardServletEnvironment是整个springboot应用运行环境的实现类，后面所有关于配置和环境的操作都基于此类
  */
 public class StandardServletEnvironment extends StandardEnvironment implements ConfigurableWebEnvironment {
 
@@ -79,6 +81,7 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 	 * @see org.springframework.jndi.JndiPropertySource
 	 * @see org.springframework.context.support.AbstractApplicationContext#initPropertySources
 	 * @see #initPropertySources(ServletContext, ServletConfig)
+	 * 在构造方法中调用自定义配置文件，spring的一贯做法，模板模式，调用的是实例对象的自定义逻辑
 	 */
 	@Override
 	protected void customizePropertySources(MutablePropertySources propertySources) {

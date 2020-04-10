@@ -54,6 +54,8 @@ import org.springframework.core.annotation.AliasFor;
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @since 2.5
+ * @date 20200403
+ * @SessionAttributes注解就可以使得模型中的数据存储一份到session域中
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

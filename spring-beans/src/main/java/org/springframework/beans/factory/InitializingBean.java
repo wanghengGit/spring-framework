@@ -30,6 +30,7 @@ package org.springframework.beans.factory;
  * @see DisposableBean
  * @see org.springframework.beans.factory.config.BeanDefinition#getPropertyValues()
  * @see org.springframework.beans.factory.support.AbstractBeanDefinition#getInitMethodName()
+ * @date 20200410
  */
 public interface InitializingBean {
 
@@ -40,6 +41,8 @@ public interface InitializingBean {
 	 * configuration and final initialization when all bean properties have been set.
 	 * @throws Exception in the event of misconfiguration (such as failure to set an
 	 * essential property) or if initialization fails for any other reason
+	 * 用于bean实例化之后，设置属性的方法。
+	 * 上面已经提到，在invokeInitMethods方法中会触发该方法调用
 	 */
 	void afterPropertiesSet() throws Exception;
 

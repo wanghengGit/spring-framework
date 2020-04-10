@@ -1,19 +1,3 @@
-/*
- * Copyright 2002-2018 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.springframework.orm.jpa;
 
 import java.util.HashMap;
@@ -55,53 +39,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * {@link org.springframework.transaction.PlatformTransactionManager} implementation
- * for a single JPA {@link javax.persistence.EntityManagerFactory}. Binds a JPA
- * EntityManager from the specified factory to the thread, potentially allowing for
- * one thread-bound EntityManager per factory. {@link SharedEntityManagerCreator} and
- * {@code @PersistenceContext} are aware of thread-bound entity managers and participate
- * in such transactions automatically. Using either is required for JPA access code
- * supporting this transaction management mechanism.
- *
- * <p>This transaction manager is appropriate for applications that use a single
- * JPA EntityManagerFactory for transactional data access. JTA (usually through
- * {@link org.springframework.transaction.jta.JtaTransactionManager}) is necessary
- * for accessing multiple transactional resources within the same transaction.
- * Note that you need to configure your JPA provider accordingly in order to make
- * it participate in JTA transactions.
- *
- * <p>This transaction manager also supports direct DataSource access within a
- * transaction (i.e. plain JDBC code working with the same DataSource).
- * This allows for mixing services which access JPA and services which use plain
- * JDBC (without being aware of JPA)! Application code needs to stick to the
- * same simple Connection lookup pattern as with
- * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}
- * (i.e. {@link org.springframework.jdbc.datasource.DataSourceUtils#getConnection}
- * or going through a
- * {@link org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy}).
- * Note that this requires a vendor-specific {@link JpaDialect} to be configured.
- *
- * <p>Note: To be able to register a DataSource's Connection for plain JDBC code,
- * this instance needs to be aware of the DataSource ({@link #setDataSource}).
- * The given DataSource should obviously match the one used by the given
- * EntityManagerFactory. This transaction manager will autodetect the DataSource
- * used as the connection factory of the EntityManagerFactory, so you usually
- * don't need to explicitly specify the "dataSource" property.
- *
- * <p>This transaction manager supports nested transactions via JDBC 3.0 Savepoints.
- * The {@link #setNestedTransactionAllowed "nestedTransactionAllowed"} flag defaults
- * to {@code false} though, since nested transactions will just apply to the JDBC
- * Connection, not to the JPA EntityManager and its cached entity objects and related
- * context. You can manually set the flag to {@code true} if you want to use nested
- * transactions for JDBC access code which participates in JPA transactions (provided
- * that your JDBC driver supports Savepoints). <i>Note that JPA itself does not support
- * nested transactions! Hence, do not expect JPA access code to semantically
- * participate in a nested transaction.</i>
- *
  * @author Juergen Hoeller
+ * @author wangheng
+ * @date 2019/10/10
  * @since 2.0
- * @see #setEntityManagerFactory
- * @see #setDataSource
  * @see LocalEntityManagerFactoryBean
  * @see org.springframework.orm.jpa.support.SharedEntityManagerBean
  * @see org.springframework.jdbc.datasource.DataSourceUtils#getConnection

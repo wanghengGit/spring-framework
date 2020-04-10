@@ -55,6 +55,8 @@ import java.lang.annotation.Target;
  * @author Sam Brannen
  * @since 4.0
  * @see Condition
+ * @date 20200403
+ * 作用在类和方法上，决定@Component（含子注解）和@Bean是否需要被加载。
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

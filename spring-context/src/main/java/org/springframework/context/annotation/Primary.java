@@ -81,6 +81,8 @@ import java.lang.annotation.Target;
  * @see Bean
  * @see ComponentScan
  * @see org.springframework.stereotype.Component
+ * @date 20200403
+ * 自动装配时当出现多个Bean候选者时，被注解为@Primary的Bean将作为首选者，否则将抛出异常
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

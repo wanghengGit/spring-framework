@@ -51,6 +51,7 @@ import org.springframework.util.StringUtils;
  * @since 3.1
  * @see ConfigurableEnvironment
  * @see StandardEnvironment
+ * @date 20200410
  */
 public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 
@@ -106,7 +107,11 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	private final Set<String> activeProfiles = new LinkedHashSet<>();
 
 	private final Set<String> defaultProfiles = new LinkedHashSet<>(getReservedDefaultProfiles());
-
+	/**
+	 * 这里的设计很巧妙，将MutablePropertySources传递到文件解析器propertyResolver中，
+	 * 同时AbstractEnvironment又实现了文件解析接口ConfigurablePropertyResolver,所以AbstractEnvironment就有了文件解析的功能。
+	 * 所以StandardServletEnvironment文件解析功能实际委托给了PropertySourcesPropertyResolver来实现
+	 */
 	private final MutablePropertySources propertySources = new MutablePropertySources();
 
 	private final ConfigurablePropertyResolver propertyResolver =
@@ -121,6 +126,7 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 * @see #customizePropertySources(MutablePropertySources)
 	 */
 	public AbstractEnvironment() {
+		//从名字可以看出加载我们的自定义配置文件
 		customizePropertySources(this.propertySources);
 	}
 

@@ -107,6 +107,7 @@ import org.springframework.util.ReflectionUtils;
  * @since 3.1
  * @see #onStartup(Set, ServletContext)
  * @see WebApplicationInitializer
+ * @date 20200404
  */
 @HandlesTypes(WebApplicationInitializer.class)
 public class SpringServletContainerInitializer implements ServletContainerInitializer {
@@ -136,6 +137,8 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
 	 * @param servletContext the servlet context to be initialized
 	 * @see WebApplicationInitializer#onStartup(ServletContext)
 	 * @see AnnotationAwareOrderComparator
+	 * @date 20200404
+	 * Servlet
 	 */
 	@Override
 	public void onStartup(@Nullable Set<Class<?>> webAppInitializerClasses, ServletContext servletContext)
@@ -150,6 +153,7 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
 				if (!waiClass.isInterface() && !Modifier.isAbstract(waiClass.getModifiers()) &&
 						WebApplicationInitializer.class.isAssignableFrom(waiClass)) {
 					try {
+						//为所有的WebApplicationInitializer类型创建实例,并加入集合中
 						initializers.add((WebApplicationInitializer)
 								ReflectionUtils.accessibleConstructor(waiClass).newInstance());
 					}
@@ -167,6 +171,7 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
 
 		servletContext.log(initializers.size() + " Spring WebApplicationInitializers detected on classpath");
 		AnnotationAwareOrderComparator.sort(initializers);
+		//调用每一个WebApplicationInitializer实例的onstartup方法
 		for (WebApplicationInitializer initializer : initializers) {
 			initializer.onStartup(servletContext);
 		}

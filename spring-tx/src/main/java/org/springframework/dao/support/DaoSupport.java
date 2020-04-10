@@ -31,16 +31,20 @@ import org.springframework.beans.factory.InitializingBean;
  * @author Juergen Hoeller
  * @since 1.2.2
  * @see org.springframework.jdbc.core.support.JdbcDaoSupport
+ * @date 20200403
  */
 public abstract class DaoSupport implements InitializingBean {
 
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-
+	/**
+	 * 	spring 完成属性设置后会调用此方法
+ 	 */
 	@Override
 	public final void afterPropertiesSet() throws IllegalArgumentException, BeanInitializationException {
 		// Let abstract subclasses check their configuration.
+		// 这里提供了接口供子类去实现
 		checkDaoConfig();
 
 		// Let concrete implementations initialize themselves.

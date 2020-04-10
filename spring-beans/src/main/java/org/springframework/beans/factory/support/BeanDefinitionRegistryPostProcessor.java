@@ -29,6 +29,10 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
  * @author Juergen Hoeller
  * @since 3.0.1
  * @see org.springframework.context.annotation.ConfigurationClassPostProcessor
+ * @date 20200410
+ * BeanDefinitionRegistryPostProcessor接口在读取项目中的beanDefinition之后执行，提供的一个补充扩展接口，
+ * 用来动态注册beanDefinition
+ * 调用点：在PostProcessorRegistrationDelegate中
  */
 public interface BeanDefinitionRegistryPostProcessor extends BeanFactoryPostProcessor {
 

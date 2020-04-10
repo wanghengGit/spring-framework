@@ -58,6 +58,7 @@ import org.springframework.util.StringValueResolver;
  * @see org.springframework.context.MessageSourceAware
  * @see org.springframework.context.ApplicationContextAware
  * @see org.springframework.context.support.AbstractApplicationContext#refresh()
+ * @date 20200410
  */
 class ApplicationContextAwareProcessor implements BeanPostProcessor {
 
@@ -103,6 +104,10 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 		return bean;
 	}
 
+	/**
+	 * 该扩展点用于执行各种驱动接口。在 bean实例化之后，属性填充之后，通过扩展接口，执行如下驱动接口：
+	 * @param bean
+	 */
 	private void invokeAwareInterfaces(Object bean) {
 		if (bean instanceof EnvironmentAware) {
 			((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());

@@ -31,7 +31,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.BeanFactory
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see org.springframework.jndi.JndiObjectFactoryBean
- * @date 20200315
+ * @date 20200329
+ * 工厂方法
  */
 public interface FactoryBean<T> {
 

@@ -1,19 +1,3 @@
-/*
- * Copyright 2002-2018 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.springframework.transaction.jta;
 
 import java.io.IOException;
@@ -53,59 +37,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link org.springframework.transaction.PlatformTransactionManager} implementation
- * for JTA, delegating to a backend JTA provider. This is typically used to delegate
- * to a Java EE server's transaction coordinator, but may also be configured with a
- * local JTA provider which is embedded within the application.
- *
- * <p>This transaction manager is appropriate for handling distributed transactions,
- * i.e. transactions that span multiple resources, and for controlling transactions on
- * application server resources (e.g. JDBC DataSources available in JNDI) in general.
- * For a single JDBC DataSource, DataSourceTransactionManager is perfectly sufficient,
- * and for accessing a single resource with Hibernate (including transactional cache),
- * HibernateTransactionManager is appropriate, for example.
- *
- * <p><b>For typical JTA transactions (REQUIRED, SUPPORTS, MANDATORY, NEVER), a plain
- * JtaTransactionManager definition is all you need, portable across all Java EE servers.</b>
- * This corresponds to the functionality of the JTA UserTransaction, for which Java EE
- * specifies a standard JNDI name ("java:comp/UserTransaction"). There is no need to
- * configure a server-specific TransactionManager lookup for this kind of JTA usage.
- *
- * <p><b>Transaction suspension (REQUIRES_NEW, NOT_SUPPORTED) is just available with a
- * JTA TransactionManager being registered.</b> Common TransactionManager locations are
- * autodetected by JtaTransactionManager, provided that the "autodetectTransactionManager"
- * flag is set to "true" (which it is by default).
- *
- * <p>Note: Support for the JTA TransactionManager interface is not required by Java EE.
- * Almost all Java EE servers expose it, but do so as extension to EE. There might be some
- * issues with compatibility, despite the TransactionManager interface being part of JTA.
- * As a consequence, Spring provides various vendor-specific PlatformTransactionManagers,
- * which are recommended to be used if appropriate: {@link WebLogicJtaTransactionManager}
- * and {@link WebSphereUowTransactionManager}. For all other Java EE servers, the
- * standard JtaTransactionManager is sufficient.
- *
- * <p>This pure JtaTransactionManager class supports timeouts but not per-transaction
- * isolation levels. Custom subclasses may override the {@link #doJtaBegin} method for
- * specific JTA extensions in order to provide this functionality; Spring includes a
- * corresponding {@link WebLogicJtaTransactionManager} class for WebLogic Server. Such
- * adapters for specific Java EE transaction coordinators may also expose transaction
- * names for monitoring; with standard JTA, transaction names will simply be ignored.
- *
- * <p><b>Consider using Spring's {@code tx:jta-transaction-manager} configuration
- * element for automatically picking the appropriate JTA platform transaction manager
- * (automatically detecting WebLogic and WebSphere).</b>
- *
- * <p>JTA 1.1 adds the TransactionSynchronizationRegistry facility, as public Java EE 5
- * API in addition to the standard JTA UserTransaction handle. As of Spring 2.5, this
- * JtaTransactionManager autodetects the TransactionSynchronizationRegistry and uses
- * it for registering Spring-managed synchronizations when participating in an existing
- * JTA transaction (e.g. controlled by EJB CMT). If no TransactionSynchronizationRegistry
- * is available, then such synchronizations will be registered via the (non-EE) JTA
- * TransactionManager handle.
- *
- * <p>This class is serializable. However, active synchronizations do not survive serialization.
- *
  * @author Juergen Hoeller
+ * @author wangheng
+ * @date 2019/10/10
  * @since 24.03.2003
  * @see javax.transaction.UserTransaction
  * @see javax.transaction.TransactionManager

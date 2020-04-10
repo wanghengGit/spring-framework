@@ -34,6 +34,7 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @since 2.0.3
  * @see InstantiationAwareBeanPostProcessorAdapter
+ * @date 20200410
  */
 public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessor {
 
@@ -58,6 +59,11 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	 * @param beanName the name of the bean
 	 * @return the candidate constructors, or {@code null} if none specified
 	 * @throws org.springframework.beans.BeansException in case of errors
+	 * 该扩展点决定判断合适的 bean 构造方法。
+	 * 具体可参考AutowiredAnnotationBeanPostProcessor实现类，针对以下使用场景：
+	 * 在MyComponent1中通过构造方法注入MyComponent2:
+	 * 这里会判断选择出合适的构造方法，并实例化需要的参数 bean。
+	 * 调用点在AbstractAutowireCapableBeanFactory中：
 	 */
 	@Nullable
 	default Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, String beanName)
@@ -86,6 +92,8 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	 * @return the object to expose as bean reference
 	 * (typically with the passed-in bean instance as default)
 	 * @throws org.springframework.beans.BeansException in case of errors
+	 * getEarlyBeanReference方法只要有在 Spring 发生循环依赖时调用。首先，当bean 创建时，为了防止后续有循环依赖，会提前暴露回调方法，用于 bean 实例化的后置处理。getEarlyBeanReference方法就是在提前暴露的回调方法中触发。
+	 * 具体调用点在DefaultSingletonBeanRegistry：
 	 */
 	default Object getEarlyBeanReference(Object bean, String beanName) throws BeansException {
 		return bean;

@@ -416,6 +416,8 @@ import org.springframework.stereotype.Component;
  * @see ConfigurationClassPostProcessor
  * @see org.springframework.core.env.Environment
  * @see org.springframework.test.context.ContextConfiguration
+ * @date 20200403
+ * @Configuration把一个类作为一个IoC容器，它的某个方法头上如果注册了@Bean，就会作为这个Spring容器中的Bean。
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

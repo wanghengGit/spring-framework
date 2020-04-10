@@ -28,6 +28,7 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @since 3.1
  * @see PropertySource
+ * @date 20200410
  */
 public interface PropertySources extends Iterable<PropertySource<?>> {
 

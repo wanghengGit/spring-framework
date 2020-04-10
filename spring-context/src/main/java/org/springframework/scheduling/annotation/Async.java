@@ -49,6 +49,8 @@ import java.lang.annotation.Target;
  * @since 3.0
  * @see AnnotationAsyncExecutionInterceptor
  * @see AsyncAnnotationAdvisor
+ * @date 202000403
+ * 异步方法调用
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

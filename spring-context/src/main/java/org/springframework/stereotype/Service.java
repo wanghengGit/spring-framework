@@ -40,6 +40,8 @@ import org.springframework.core.annotation.AliasFor;
  * @since 2.5
  * @see Component
  * @see Repository
+ * @date 20200403
+ * 用于标注业务层组件
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

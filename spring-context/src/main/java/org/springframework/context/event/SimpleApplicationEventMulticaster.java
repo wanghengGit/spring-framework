@@ -45,6 +45,7 @@ import org.springframework.util.ErrorHandler;
  * @author Juergen Hoeller
  * @author Stephane Nicoll
  * @see #setTaskExecutor
+ * @date 20200406
  */
 public class SimpleApplicationEventMulticaster extends AbstractApplicationEventMulticaster {
 
@@ -132,10 +133,13 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 		ResolvableType type = (eventType != null ? eventType : resolveDefaultEventType(event));
 		Executor executor = getTaskExecutor();
 		for (ApplicationListener<?> listener : getApplicationListeners(event, type)) {
+			//获取线程池，如果为空则同步处理。这里线程池为空，还未没初始化
 			if (executor != null) {
+				//异步发送事件
 				executor.execute(() -> invokeListener(listener, event));
 			}
 			else {
+				//同步发送事件
 				invokeListener(listener, event);
 			}
 		}

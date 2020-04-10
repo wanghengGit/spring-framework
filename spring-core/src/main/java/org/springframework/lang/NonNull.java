@@ -43,6 +43,8 @@ import javax.annotation.meta.TypeQualifierNickname;
  * @see NonNullApi
  * @see NonNullFields
  * @see Nullable
+ * @date 20200403
+ * 验证对象是否不为null, 无法查检长度为0的字符串
  */
 @Target({ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

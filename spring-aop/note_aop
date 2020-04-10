@@ -1,0 +1,8 @@
+AOP(Aspect-Oriented Programming) 面向切面编程。Spring Aop 在 Spring框架中的地位举足轻重，
+主要用于实现事务、缓存、安全等功能。本篇主要是对源码进行深度分析。
+
+主要介绍以下三个方面：
+
+Spring AOP 多种代理机制相关核心类介绍。
+Spring Boot 中AOP注解方式源码分析。
+Spring Boot 1.x 版本和 2.x版本 AOP 默认配置的变动。

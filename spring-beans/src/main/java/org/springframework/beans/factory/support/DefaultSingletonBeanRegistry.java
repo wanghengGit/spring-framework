@@ -102,15 +102,25 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		return getSingleton(beanName, true);
 	}
 
+	/**
+	 * 使用了 双重判断加锁 的单例模式
+	 * @param beanName
+	 * @param allowEarlyReference
+	 * @return
+	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 		Object singletonObject = this.singletonObjects.get(beanName);
+		//如果 bean 还未实例化，并且正在创建中
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {
+				//判断是否已经提前提前暴露了bean 引用
 				singletonObject = this.earlySingletonObjects.get(beanName);
+				//如果运行循环依赖
 				if (singletonObject == null && allowEarlyReference) {
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
+						//则调用 getObject() 方法
 						singletonObject = singletonFactory.getObject();
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						this.singletonFactories.remove(beanName);

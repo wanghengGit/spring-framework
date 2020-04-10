@@ -46,6 +46,9 @@ import org.springframework.web.cors.CorsConfiguration;
  * @author Sebastien Deleuze
  * @author Sam Brannen
  * @since 4.2
+ * @date 20200403
+ * 是Cross-Origin ResourceSharing（跨域资源共享）的简写
+ * 作用是解决跨域访问的问题
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

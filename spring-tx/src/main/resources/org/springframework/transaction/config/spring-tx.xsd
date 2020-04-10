@@ -17,7 +17,14 @@
 	transaction management infrastructure.
 		]]></xsd:documentation>
 	</xsd:annotation>
-
+<!--
+文档中的注释大概语义如下：　　
+定义AOP的advice的执行事务语义.也就是说，这个元素可以定义任意数量的事务语义（事务语义包括传播设置，隔离级别，回滚规则等等）
+名为platformtransactionmanager的bean是该模式下用来 驱动事务的默认方式。 这个属性不是必选属性，
+只有在要求PlatformTransactionManager不是transactionManager的时候显性设置
+由此可得，此方式下的默认advice方式的事务管理方式默认是PlatformTransactionManager
+（bean进行装载的这种自定义标签的时候，注册主配置的TransactionInterceptor事件）
+-->
 	<xsd:element name="advice">
 		<xsd:complexType>
 			<xsd:annotation>

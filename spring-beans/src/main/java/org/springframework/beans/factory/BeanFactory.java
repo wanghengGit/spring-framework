@@ -9,8 +9,8 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Chris Beams
  * @since 13 April 2001
- * @author wangheng
  * @date 2019/09/24
+ * 简单工厂模式
  */
 public interface BeanFactory {
 

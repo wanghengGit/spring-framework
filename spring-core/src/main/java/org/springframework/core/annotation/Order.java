@@ -59,6 +59,8 @@ import org.springframework.core.Ordered;
  * @see AnnotationAwareOrderComparator
  * @see OrderUtils
  * @see javax.annotation.Priority
+ * @date 20200403
+ * 定义顺序，值越小优先级越高，支持负数。
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.FIELD})

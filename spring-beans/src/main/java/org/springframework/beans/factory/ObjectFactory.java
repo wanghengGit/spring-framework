@@ -35,6 +35,7 @@ import org.springframework.beans.BeansException;
  * @since 1.0.2
  * @param <T> the object type
  * @see FactoryBean
+ * @date 20200410
  */
 @FunctionalInterface
 public interface ObjectFactory<T> {

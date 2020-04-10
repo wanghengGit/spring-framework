@@ -16,6 +16,7 @@ import org.springframework.util.Assert;
  * @see #getResourceByPath
  * @see GenericApplicationContext
  * @date 20200324
+ * 从类的跟路径下加载配置文件,推荐使用这种
  */
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
 

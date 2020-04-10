@@ -157,6 +157,6 @@ public interface ConfigurableListableBeanFactory
 	 * Call {@link #destroySingletons()} for full cleanup in this case.
 	 * @see #destroySingletons()
 	 */
-	void preInstantiateSingletons() throws BeansException;
+	void 	preInstantiateSingletons() throws BeansException;
 
 }

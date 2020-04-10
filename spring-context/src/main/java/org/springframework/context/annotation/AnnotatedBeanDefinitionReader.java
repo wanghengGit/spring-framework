@@ -44,6 +44,7 @@ import org.springframework.util.Assert;
  * @author Phillip Webb
  * @since 3.0
  * @see AnnotationConfigApplicationContext#register
+ * @date 20200410
  */
 public class AnnotatedBeanDefinitionReader {
 
@@ -248,7 +249,7 @@ public class AnnotatedBeanDefinitionReader {
 	private <T> void doRegisterBean(Class<T> annotatedClass, @Nullable String name,
 			@Nullable Class<? extends Annotation>[] qualifiers, @Nullable Supplier<T> supplier,
 			@Nullable BeanDefinitionCustomizer[] customizers) {
-
+		//我们的启动类就被包装成AnnotatedGenericBeanDefinition了，后续启动类的处理都基于该对象了
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
 		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
 			return;
