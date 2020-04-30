@@ -48,6 +48,7 @@ import org.springframework.util.ClassUtils;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @since 1.1
+ * @date 20200410
  */
 public abstract class AbstractFallbackTransactionAttributeSource implements TransactionAttributeSource {
 

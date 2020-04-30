@@ -4,12 +4,14 @@ import org.springframework.lang.Nullable;
 
 /**
  * @author Juergen Hoeller
- * @author wangheng
  * @date 2019/10/09
  * @since 08.05.2003
  * @see PlatformTransactionManager#getTransaction(TransactionDefinition)
  * @see org.springframework.transaction.support.DefaultTransactionDefinition
  * @see org.springframework.transaction.interceptor.TransactionAttribute
+ * Spring 框架中，涉及到事务管理的 API 大约有100个左右，
+ * 其中最重要的有三个：TransactionDefinition、PlatformTransactionManager、TransactionStatus
+ * 它用于定义一个事务。它包含了事务的静态属性，比如：事务传播行为、隔离级别、超时时间等等。
  */
 public interface TransactionDefinition {
 

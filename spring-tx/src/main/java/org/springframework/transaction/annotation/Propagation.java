@@ -26,6 +26,10 @@ import org.springframework.transaction.TransactionDefinition;
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
  * @since 1.2
+ * @date 20200410
+ * 前面所说的事务,是不涉及嵌套条调用的,即是不会再事务中嵌套事务调用。但是在开发中难免会遇到这种情况。
+ * 比如，一个事务在没有执行commit之前，有调用了一个事务。
+ * 那这个时候，遇到两个都有事务的方法怎么办呢，因为Spring提出了事务传播方式这个概念
  */
 public enum Propagation {
 

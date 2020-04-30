@@ -39,12 +39,12 @@ import org.springframework.util.Assert;
 
 /**
  * @author Juergen Hoeller
- * @author wangheng
  * @date 2019/10/09
  * @since 4.2
  * @see org.springframework.jdbc.core.JdbcTemplate
  * @see org.springframework.jdbc.datasource.DataSourceTransactionManager
  * @see org.springframework.transaction.jta.JtaTransactionManager
+ * 适用于使用Hibernate进行数据持久化操作的情况
  */
 @SuppressWarnings("serial")
 public class HibernateTransactionManager extends AbstractPlatformTransactionManager

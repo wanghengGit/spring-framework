@@ -68,6 +68,7 @@ import org.springframework.util.Assert;
  * @see #isSynchronizationActive
  * @see #registerSynchronization
  * @see TransactionSynchronization
+ * @date 20200411
  */
 public class TransactionSynchronizationManager {
 

@@ -29,6 +29,8 @@ import org.springframework.aop.Pointcut;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
+ * @date 20200410
+ * 静态方法切面，抽象类。定义了一个classFilter，通过重写
  */
 public abstract class StaticMethodMatcherPointcut extends StaticMethodMatcher implements Pointcut {
 

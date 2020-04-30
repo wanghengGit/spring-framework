@@ -26,6 +26,7 @@ import org.springframework.transaction.TransactionDefinition;
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
  * @since 1.2
+ * @date 20200410
  */
 public enum Isolation {
 

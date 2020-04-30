@@ -30,6 +30,9 @@ import org.springframework.lang.Nullable;
  * @see DefaultAopProxyFactory
  * @date 20200329
  * 代理模式
+ * Spring AOP 代理有 CglibAopProxy 和 JdkDynamicAopProxy 两种，
+ * 对于 CglibAopProxy，需要调用其内部类的 DynamicAdvisedInterceptor 的 intercept 方法。
+ * 对于 JdkDynamicAopProxy，需要调用其 invoke 方法
  */
 public interface AopProxy {
 

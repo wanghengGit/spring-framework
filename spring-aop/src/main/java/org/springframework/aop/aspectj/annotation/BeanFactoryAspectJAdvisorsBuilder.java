@@ -51,7 +51,11 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 		this.advisorFactory = advisorFactory;
 	}
 
-
+	/**
+	 * 继续跟进buildAspectJAdvisors方法，会触发
+	 * ReflectiveAspectJAdvisorFactory中的getAdvisors方法
+	 * @return
+	 */
 	public List<Advisor> buildAspectJAdvisors() {
 		List<String> aspectNames = this.aspectBeanNames;
 

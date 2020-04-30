@@ -22,12 +22,14 @@ import org.springframework.transaction.UnexpectedRollbackException;
 
 /**
  * @author Juergen Hoeller
- * @author wangheng
  * @date 2019/10/09
  * @since 28.03.2003
  * @see #setTransactionSynchronization
  * @see TransactionSynchronizationManager
  * @see org.springframework.transaction.jta.JtaTransactionManager
+ * 使用的技术手段就是代理
+ * 其实就是set autocommit=off; 当方法执行完成无指定的异常,在进行commit;
+ * 抽象事务管理器
  */
 @SuppressWarnings("serial")
 public abstract class AbstractPlatformTransactionManager implements PlatformTransactionManager, Serializable {

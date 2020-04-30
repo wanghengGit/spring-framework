@@ -37,6 +37,7 @@ import org.springframework.beans.BeansException;
  * @see BeanClassLoaderAware
  * @see InitializingBean
  * @see org.springframework.context.ApplicationContextAware
+ * @date 20200410
  */
 public interface BeanFactoryAware extends Aware {
 

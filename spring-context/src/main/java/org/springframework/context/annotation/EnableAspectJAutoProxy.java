@@ -115,6 +115,11 @@ import java.lang.annotation.Target;
  * @author Juergen Hoeller
  * @since 3.1
  * @see org.aspectj.lang.annotation.Aspect
+ * @date 20200410
+ * 大致流程主要分为三个步骤：
+ * 1： 创建AnnotationAwareAspectJAutoProxyCreator对象
+ * 2： 扫描容器中的切面，创建PointcutAdvisor对象
+ * 3： 生成代理类
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

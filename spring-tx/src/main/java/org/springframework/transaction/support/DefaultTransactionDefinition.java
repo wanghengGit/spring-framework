@@ -32,6 +32,7 @@ import org.springframework.transaction.TransactionDefinition;
  *
  * @author Juergen Hoeller
  * @since 08.05.2003
+ * @date 20200410
  */
 @SuppressWarnings("serial")
 public class DefaultTransactionDefinition implements TransactionDefinition, Serializable {

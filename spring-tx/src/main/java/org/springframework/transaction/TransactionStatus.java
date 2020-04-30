@@ -4,7 +4,6 @@ import java.io.Flushable;
 
 /**
  * @author Juergen Hoeller
- * @author wangheng
  * @date 2019/10/09
  * @since 27.03.2003
  * @see #setRollbackOnly()

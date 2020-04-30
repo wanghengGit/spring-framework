@@ -25,7 +25,6 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @since 2.0
  *
- * @author wangheng
  * @date 2019/08/16
  */
 @SuppressWarnings("serial")
@@ -66,7 +65,15 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 	@Nullable
 	private Boolean isAfterAdvice;
 
-
+	/**
+	 * InstantiationModelAwarePointcutAdvisorImpl的构造方法会触发构造通知对象
+	 * @param declaredPointcut
+	 * @param aspectJAdviceMethod
+	 * @param aspectJAdvisorFactory
+	 * @param aspectInstanceFactory
+	 * @param declarationOrder
+	 * @param aspectName
+	 */
 	public InstantiationModelAwarePointcutAdvisorImpl(AspectJExpressionPointcut declaredPointcut,
 			Method aspectJAdviceMethod, AspectJAdvisorFactory aspectJAdvisorFactory,
 			MetadataAwareAspectInstanceFactory aspectInstanceFactory, int declarationOrder, String aspectName) {

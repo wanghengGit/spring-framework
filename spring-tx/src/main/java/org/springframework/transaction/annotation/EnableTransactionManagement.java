@@ -148,6 +148,8 @@ import org.springframework.core.Ordered;
  * @see TransactionManagementConfigurationSelector
  * @see ProxyTransactionManagementConfiguration
  * @see org.springframework.transaction.aspectj.AspectJTransactionManagementConfiguration
+ * @date 20200410
+ * 开启事务管理
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

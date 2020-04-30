@@ -52,6 +52,7 @@ import org.springframework.util.StringValueResolver;
  * @deprecated as of 5.2; use {@code org.springframework.context.support.PropertySourcesPlaceholderConfigurer}
  * instead which is more flexible through taking advantage of the {@link org.springframework.core.env.Environment}
  * and {@link org.springframework.core.env.PropertySource} mechanisms.
+ * @date 20200411
  */
 @Deprecated
 public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport {

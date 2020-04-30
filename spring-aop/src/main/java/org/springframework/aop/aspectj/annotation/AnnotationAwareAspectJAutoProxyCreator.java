@@ -17,8 +17,11 @@ import org.springframework.util.Assert;
  * @since 2.0
  * @see org.springframework.aop.aspectj.annotation.AspectJAdvisorFactory
  *
- * @author wangheng
  * @date 2019/08/16
+ * 在spring ioc流程加载的过程中，会触发 beanPostProcessor 扩展接口，
+ * 而AnnotationAwareAspectJAutoProxyCreator又是SmartInstantiationAwareBeanPostProcessor的子类，
+ * 所以该扩展接口正是 aop 实现的入口。
+ * 该接口的触发在实例化 bean 之后，初始化 bean之前，具体来看：
  */
 @SuppressWarnings("serial")
 public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorAutoProxyCreator {
@@ -53,8 +56,10 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 	protected void initBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 		super.initBeanFactory(beanFactory);
 		if (this.aspectJAdvisorFactory == null) {
+			//advisor 工厂类
 			this.aspectJAdvisorFactory = new ReflectiveAspectJAdvisorFactory(beanFactory);
 		}
+		//用于创建 advisor
 		this.aspectJAdvisorsBuilder =
 				new BeanFactoryAspectJAdvisorsBuilderAdapter(beanFactory, this.aspectJAdvisorFactory);
 	}
@@ -64,9 +69,11 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 	protected List<Advisor> findCandidateAdvisors() {
 		//当使用注解方式配置AOP的时候并不是丢弃了对XML配置的支持
 		//在这里调用父类方法加载配置文件中的AOP声明
+		//获得 Advisor 实现类
 		// Add all the Spring advisors found according to superclass rules.
 		List<Advisor> advisors = super.findCandidateAdvisors();
 		// Build Advisors for all AspectJ aspects in the bean factory.
+		//将@Aspect注解类， 解析成Advisor
 		if (this.aspectJAdvisorsBuilder != null) {
 			advisors.addAll(this.aspectJAdvisorsBuilder.buildAspectJAdvisors());
 		}

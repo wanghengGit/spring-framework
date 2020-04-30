@@ -75,6 +75,7 @@ import org.springframework.util.ClassUtils;
  * @see ReloadableResourceBundleMessageSource
  * @see java.util.ResourceBundle
  * @see java.text.MessageFormat
+ * @date 20200413
  */
 public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSource implements BeanClassLoaderAware {
 

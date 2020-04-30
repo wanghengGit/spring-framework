@@ -39,6 +39,7 @@ import org.springframework.jmx.support.RegistrationPolicy;
  * @author Phillip Webb
  * @since 3.2
  * @see MBeanExportConfiguration
+ * @date 20200414
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

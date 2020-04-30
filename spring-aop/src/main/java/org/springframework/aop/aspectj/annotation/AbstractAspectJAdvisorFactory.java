@@ -33,7 +33,6 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @since 2.0
  *
- * @author wangheng
  * @date 2019/08/16
  */
 public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFactory {
@@ -56,6 +55,7 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 	}
 
 	private boolean hasAspectAnnotation(Class<?> clazz) {
+		//判定当前类是否有 Aspect 注解，如果有，则不能被代理
 		return (AnnotationUtils.findAnnotation(clazz, Aspect.class) != null);
 	}
 

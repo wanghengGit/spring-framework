@@ -73,11 +73,16 @@ import org.springframework.util.Assert;
  * @see org.springframework.transaction.jta.JtaTransactionManager
  * @see org.springframework.jdbc.datasource.DataSourceTransactionManager
  * @see org.springframework.jdbc.datasource.DataSourceUtils#getConnection
+ * @date 20200411
  */
 public abstract class TransactionSynchronizationManager {
 
 	private static final Log logger = LogFactory.getLog(TransactionSynchronizationManager.class);
-
+	/**
+	 *  一般是一个线程持有一个 独立的事务，以相互隔离地处理各自的事务。
+	 *  所以这里使用了很多 ThreadLocal对象，为每个线程绑定 对应的事务属性及资源，
+	 *  以便后续使用时能直接获取。
+	 */
 	private static final ThreadLocal<Map<Object, Object>> resources =
 			new NamedThreadLocal<>("Transactional resources");
 
@@ -109,6 +114,7 @@ public abstract class TransactionSynchronizationManager {
 	 * values (usually the active resource object), or an empty Map if there are
 	 * currently no resources bound
 	 * @see #hasResource
+	 * 返回当前线程绑定的所有资源
 	 */
 	public static Map<Object, Object> getResourceMap() {
 		Map<Object, Object> map = resources.get();
@@ -173,6 +179,7 @@ public abstract class TransactionSynchronizationManager {
 	 * @param value the value to bind (usually the active resource object)
 	 * @throws IllegalStateException if there is already a value bound to the thread
 	 * @see ResourceTransactionManager#getResourceFactory()
+	 * 为当前线程 绑定 对应的resource资源
 	 */
 	public static void bindResource(Object key, Object value) throws IllegalStateException {
 		Object actualKey = TransactionSynchronizationUtils.unwrapResourceIfNecessary(key);

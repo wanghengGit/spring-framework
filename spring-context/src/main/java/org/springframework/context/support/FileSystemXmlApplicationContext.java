@@ -117,6 +117,7 @@ public class FileSystemXmlApplicationContext extends AbstractXmlApplicationConte
 	 * @param parent the parent context
 	 * @throws BeansException if context creation failed
 	 * @see #refresh()
+	 * 如果应用直接使用FileSystemXmlApplicationContext，对于实例化这个应用上下文的支持，同时启动IoC容器的refresh()过程
 	 */
 	public FileSystemXmlApplicationContext(
 			String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)

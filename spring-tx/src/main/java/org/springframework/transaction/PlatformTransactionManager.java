@@ -9,6 +9,7 @@ import org.springframework.lang.Nullable;
  * @since 16.05.2003
  * @see org.springframework.transaction.support.TransactionTemplate
  * @see org.springframework.transaction.interceptor.TransactionInterceptor
+ * 用于执行具体的事务操作
  */
 public interface PlatformTransactionManager extends TransactionManager {
 

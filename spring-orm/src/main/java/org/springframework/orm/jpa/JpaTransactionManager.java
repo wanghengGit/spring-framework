@@ -40,7 +40,6 @@ import org.springframework.util.CollectionUtils;
 
 /**
  * @author Juergen Hoeller
- * @author wangheng
  * @date 2019/10/10
  * @since 2.0
  * @see LocalEntityManagerFactoryBean
@@ -50,6 +49,7 @@ import org.springframework.util.CollectionUtils;
  * @see org.springframework.jdbc.core.JdbcTemplate
  * @see org.springframework.jdbc.datasource.DataSourceTransactionManager
  * @see org.springframework.transaction.jta.JtaTransactionManager
+ * 适用于使用JPA进行数据持久化操作的情况
  */
 @SuppressWarnings("serial")
 public class JpaTransactionManager extends AbstractPlatformTransactionManager

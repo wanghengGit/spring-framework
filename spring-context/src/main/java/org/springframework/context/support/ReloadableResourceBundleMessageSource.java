@@ -84,6 +84,10 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.core.io.DefaultResourceLoader
  * @see ResourceBundleMessageSource
  * @see java.util.ResourceBundle
+ * @date 20200413
+ * 目前Spring中提供了两个MessageSource接口的实现，即
+ * ResourceBundleMessageSource和ReloadableResourceBundleMessageSource，
+ * 后者提供了无需重启即可重新加载配置信息的特性
  */
 public class ReloadableResourceBundleMessageSource extends AbstractResourceBasedMessageSource
 		implements ResourceLoaderAware {

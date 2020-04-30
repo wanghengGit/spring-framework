@@ -19,12 +19,12 @@ import org.springframework.util.Assert;
 
 /**
  * @author Juergen Hoeller
- * @author wangheng
  * @date 2019/10/10
  * @since 02.05.2003
  * @see TransactionAwareDataSourceProxy
  * @see LazyConnectionDataSourceProxy
  * @see org.springframework.jdbc.core.JdbcTemplate
+ * 适用于使用JDBC和iBatis进行数据持久化操作的情况
  */
 @SuppressWarnings("serial")
 public class DataSourceTransactionManager extends AbstractPlatformTransactionManager

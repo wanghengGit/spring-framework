@@ -11,6 +11,13 @@ import org.springframework.lang.Nullable;
  * @since 13 April 2001
  * @date 2019/09/24
  * 简单工厂模式
+ * 接口提供了使用IoC容器的规范
+ * 是Spring bean容器的根接口，提供获取bean，是否包含bean,是否单例与原型，获取bean类型，bean 别名的方法 。
+ * 它最主要的方法就是getBean(String beanName)
+ * BeanFactory的三个子接口：
+ *  * HierarchicalBeanFactory：提供父容器的访问功能
+ *  * ListableBeanFactory：提供了批量获取Bean的方法
+ *  * AutowireCapableBeanFactory：在BeanFactory基础上实现对已存在实例的管理
  */
 public interface BeanFactory {
 

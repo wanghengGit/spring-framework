@@ -44,6 +44,7 @@ import org.springframework.lang.Nullable;
  * @see ByteArrayResource
  * @see InputStreamResource
  * @since 28.12.2003
+ * Resource是Spring用来封装I/O操作的类
  */
 public interface Resource extends InputStreamSource {
 

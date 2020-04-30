@@ -11,7 +11,6 @@ import org.springframework.lang.Nullable;
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
  *
- * @author wangheng
  * @date 2019/08/16
  */
 public interface BeanPostProcessor {
