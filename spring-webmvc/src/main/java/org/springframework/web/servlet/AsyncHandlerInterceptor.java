@@ -56,6 +56,7 @@ import org.springframework.web.method.HandlerMethod;
  * @see org.springframework.web.context.request.async.WebAsyncManager
  * @see org.springframework.web.context.request.async.CallableProcessingInterceptor
  * @see org.springframework.web.context.request.async.DeferredResultProcessingInterceptor
+ * @date 20200514
  */
 public interface AsyncHandlerInterceptor extends HandlerInterceptor {
 

@@ -36,6 +36,7 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.beans.factory.BeanNameAware
  * @see org.springframework.beans.factory.support.RootBeanDefinition
  * @see org.springframework.beans.factory.support.ChildBeanDefinition
+ * @date 20200626
  */
 public class BeanDefinitionHolder implements BeanMetadataElement {
 

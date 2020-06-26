@@ -45,7 +45,7 @@ import org.springframework.util.Assert;
  * In general, we strongly recommend any other message format (e.g. JSON) instead.
  *
  * @author Juergen Hoeller
- * @since 1.1
+ * @date 20200626
  * @see #setServiceInterface
  * @see #setServiceUrl
  * @see #setCodebaseUrl
@@ -53,13 +53,15 @@ import org.springframework.util.Assert;
  * @see HttpInvokerServiceExporter
  * @see org.springframework.remoting.rmi.RmiProxyFactoryBean
  * @see org.springframework.remoting.caucho.HessianProxyFactoryBean
+ * @since 1.1
  */
 public class HttpInvokerProxyFactoryBean extends HttpInvokerClientInterceptor implements FactoryBean<Object> {
 
+	//远端对象的代理
 	@Nullable
 	private Object serviceProxy;
 
-
+	//注入完成之后，设置远端对象代理
 	@Override
 	public void afterPropertiesSet() {
 		super.afterPropertiesSet();

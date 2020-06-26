@@ -150,6 +150,7 @@ public abstract class BeanDefinitionReaderUtils {
 		// 获取bean名称
 		String beanName = definitionHolder.getBeanName();
 		//注册到IOC容器中
+		// BeanDefinition和beanName存入DefaultListableBeanFactory中的beanDefinitionMap中
 		registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());
 
 		// Register aliases for bean name, if any.

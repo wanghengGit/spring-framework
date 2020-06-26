@@ -52,6 +52,16 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 		this(configLocations, refresh, null);
 	}
 
+	/**
+	 * 方法的参数很容易理解，configLocations指Spring的xml配置文件；refresh指是否需要刷新，
+	 * 这个refresh决定了是否进行bean解析、注册及实例化；parent指父ApplicationContext
+	 * setConfigLocations方法就是设置框架要加载的资源文件的位置。
+	 * 进入refresh方法，这个方法继承自AbstractApplicationContext，所以具体实现在AbstractApplicationContext类中
+	 * @param configLocations
+	 * @param refresh
+	 * @param parent
+	 * @throws BeansException
+	 */
 	public ClassPathXmlApplicationContext(
 			String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)
 			throws BeansException {

@@ -37,6 +37,7 @@ import java.io.InputStream;
  * @see Resource
  * @see InputStreamResource
  * @see ByteArrayResource
+ * @date 20200605
  */
 public interface InputStreamSource {
 

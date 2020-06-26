@@ -31,6 +31,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * @see RemoteInvocation
  * @see RemoteInvocationFactory
  * @see DefaultRemoteInvocationFactory
+ * @date 20200626
  */
 public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccessor {
 

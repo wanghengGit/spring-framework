@@ -166,7 +166,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		return this.beanNameGenerator;
 	}
 
-
+	//关注 counter += loadBeanDefinitions(resource) 这行代码，loadBeanDefinitions 方法是个接口
 	@Override
 	public int loadBeanDefinitions(Resource... resources) throws BeanDefinitionStoreException {
 		Assert.notNull(resources, "Resource array must not be null");
@@ -235,7 +235,6 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 			return count;
 		}
 	}
-
 	@Override
 	public int loadBeanDefinitions(String... locations) throws BeanDefinitionStoreException {
 		Assert.notNull(locations, "Location array must not be null");

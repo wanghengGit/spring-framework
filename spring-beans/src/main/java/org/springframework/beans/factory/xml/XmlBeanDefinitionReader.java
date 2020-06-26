@@ -296,7 +296,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * allowing to specify an encoding to use for parsing the file
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
-	 * 装载资源
+	 * TODO 装载资源
+	 * 这里只要关注doLoadBeanDefinitions方法，进入其实现
 	 */
 	public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefinitionStoreException {
 		Assert.notNull(encodedResource, "EncodedResource must not be null");
@@ -375,6 +376,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
 	 * @see #doLoadDocument
 	 * @see #registerBeanDefinitions
+	 * 可以看到 就是对Document中元素、节点的不断解析。这里的解析分成了两条路线，
+	 * 一个是默认标签的解析，如Spring自己定义的标签；
+	 * 一个是对自定义标签的解析，如自定义的标签
 	 */
 	protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
 			throws BeanDefinitionStoreException {

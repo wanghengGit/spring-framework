@@ -63,6 +63,7 @@ import org.springframework.util.StringUtils;
  * @see Autowired
  * @see Value
  * @date 20200403
+ * 通过 @Autowired 注解注入 bean 的逻辑主要是通过 AutowiredAnnotationBeanPostProcessor bean-post-processor 实现
  */
 public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter
 		implements MergedBeanDefinitionPostProcessor, PriorityOrdered, BeanFactoryAware {

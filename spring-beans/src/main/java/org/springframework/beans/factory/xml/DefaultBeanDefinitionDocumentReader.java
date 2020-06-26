@@ -55,6 +55,7 @@ import org.springframework.util.StringUtils;
  * @author Rob Harrop
  * @author Erik Wiersma
  * @since 18.12.2003
+ * @date 20200626
  */
 public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocumentReader {
 
@@ -198,6 +199,13 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		}
 	}
 
+	/**
+	 * 这里先关注默认标签的解析
+	 * 代码中分别对import、alias、bean、beans标签进行解析，最终将解析得到的BeanDefinition和beanName存入DefaultListableBeanFactory中的beanDefinitionMap中。
+	 * 注册过程在 BeanDefinitionReaderUtils#registerBeanDefinition方法中
+	 * @param ele
+	 * @param delegate
+	 */
 	private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
 		//import标签
 		if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) {

@@ -53,6 +53,7 @@ import org.springframework.util.StringUtils;
  * @see #FileSystemResource(Path)
  * @see java.io.File
  * @see java.nio.file.Files
+ * @date 20200605
  */
 public class FileSystemResource extends AbstractResource implements WritableResource {
 

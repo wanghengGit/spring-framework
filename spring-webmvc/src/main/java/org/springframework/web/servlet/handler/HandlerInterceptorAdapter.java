@@ -29,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author Juergen Hoeller
  * @since 05.12.2003
+ * @date 20200514
  */
 public abstract class HandlerInterceptorAdapter implements AsyncHandlerInterceptor {
 

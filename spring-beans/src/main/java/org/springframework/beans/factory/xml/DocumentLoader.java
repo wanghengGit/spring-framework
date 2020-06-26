@@ -41,6 +41,7 @@ public interface DocumentLoader {
 	 * @param namespaceAware {@code true} if support for XML namespaces is to be provided
 	 * @return the loaded {@link Document document}
 	 * @throws Exception if an error occurs
+	 * @date 20200626
 	 */
 	Document loadDocument(
 			InputSource inputSource, EntityResolver entityResolver,

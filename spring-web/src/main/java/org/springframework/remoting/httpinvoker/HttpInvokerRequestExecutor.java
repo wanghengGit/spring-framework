@@ -40,6 +40,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
  * @author Juergen Hoeller
  * @since 1.1
  * @see HttpInvokerClientInterceptor#setHttpInvokerRequestExecutor
+ * @date 20200626
  */
 @FunctionalInterface
 public interface HttpInvokerRequestExecutor {

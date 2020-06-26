@@ -44,6 +44,7 @@ import org.springframework.util.xml.XmlValidationModeDetector;
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @since 2.0
+ * @date 20200626
  */
 public class DefaultDocumentLoader implements DocumentLoader {
 

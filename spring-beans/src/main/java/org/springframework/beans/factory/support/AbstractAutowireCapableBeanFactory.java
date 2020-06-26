@@ -474,6 +474,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * Central method of this class: creates a bean instance,
 	 * populates the bean instance, applies post-processors, etc.
 	 * @see #doCreateBean
+	 * 追踪代码createBean(beanName, mbd, args)进入doCreateBean方法中，
+	 * 在这个方法中进行bean实例的创建、属性填充、将bean实例加入单例bean实例的缓存中
 	 */
 	@Override
 	protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args)
@@ -561,6 +563,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
 		//实例化 bean
+		//createBeanInstance方法里完成bean实例的创建，具体过程可继续追踪代码查看，其实就是使用反射进行实例对象的创建
 		if (instanceWrapper == null) {
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}

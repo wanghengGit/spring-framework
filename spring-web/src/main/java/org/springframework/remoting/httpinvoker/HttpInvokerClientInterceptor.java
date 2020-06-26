@@ -69,6 +69,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
  * @see HttpInvokerServiceExporter
  * @see HttpInvokerProxyFactoryBean
  * @see java.rmi.server.RMIClassLoader
+ * @date 20200626
  */
 public class HttpInvokerClientInterceptor extends RemoteInvocationBasedAccessor
 		implements MethodInterceptor, HttpInvokerClientConfiguration {
@@ -140,7 +141,7 @@ public class HttpInvokerClientInterceptor extends RemoteInvocationBasedAccessor
 		getHttpInvokerRequestExecutor();
 	}
 
-
+	//对代理对象的方法调用入口
 	@Override
 	public Object invoke(MethodInvocation methodInvocation) throws Throwable {
 		if (AopUtils.isToStringMethod(methodInvocation.getMethod())) {

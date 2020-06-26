@@ -22,6 +22,7 @@ package org.springframework.core;
  *
  * @author Juergen Hoeller
  * @since 2.5.2
+ * @date 20200605
  */
 public interface AliasRegistry {
 

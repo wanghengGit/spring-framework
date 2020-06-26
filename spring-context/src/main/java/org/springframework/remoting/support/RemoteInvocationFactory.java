@@ -30,6 +30,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * @see DefaultRemoteInvocationFactory
  * @see org.springframework.remoting.rmi.RmiClientInterceptor#setRemoteInvocationFactory
  * @see org.springframework.remoting.httpinvoker.HttpInvokerClientInterceptor#setRemoteInvocationFactory
+ * @date 20200626
  */
 public interface RemoteInvocationFactory {
 

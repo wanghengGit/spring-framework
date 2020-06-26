@@ -159,6 +159,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	/**
 	 * TODO 获取bean
 	 * doCreateBean是依赖注入的入口，也是我们本次要谈的核心函数。该方法具体实现在AbstractAutowireCapableBeanFactory类
+	 * 在doGetBean中，首先会初始化其依赖的bean，然后进行自身的初始化
 	 * @throws BeansException
 	 */
 	@SuppressWarnings("unchecked")
@@ -242,8 +243,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Create bean instance.
 				if (mbd.isSingleton()) {
+					//单例的bean 初始化
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
+							// 进行 doCreateBean 方法
 							return createBean(beanName, mbd, args);
 						}
 						catch (BeansException ex) {
@@ -256,7 +259,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					});
 					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
 				}
-
+				//多例的bean 初始化
 				else if (mbd.isPrototype()) {
 					// It's a prototype -> create a new instance.
 					Object prototypeInstance = null;
