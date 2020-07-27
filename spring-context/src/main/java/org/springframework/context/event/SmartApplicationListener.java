@@ -32,6 +32,7 @@ import org.springframework.lang.Nullable;
  * @since 3.0
  * @see GenericApplicationListener
  * @see GenericApplicationListenerAdapter
+ * @date 20200627
  */
 public interface SmartApplicationListener extends ApplicationListener<ApplicationEvent>, Ordered {
 
