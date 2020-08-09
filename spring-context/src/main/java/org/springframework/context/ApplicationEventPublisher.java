@@ -29,6 +29,7 @@ package org.springframework.context;
  * @see org.springframework.context.ApplicationEvent
  * @see org.springframework.context.event.ApplicationEventMulticaster
  * @see org.springframework.context.event.EventPublicationInterceptor
+ * @date 20200627
  */
 @FunctionalInterface
 public interface ApplicationEventPublisher {

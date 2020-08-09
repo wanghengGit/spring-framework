@@ -86,6 +86,8 @@ public class InjectionMetadata {
 	 * @param targetClass the target class
 	 * @param elements the associated elements to inject
 	 * @see #forElements
+	 * 所有带有autowire注解修饰的一个InjectionMetadata集合
+	 * 一是我们处理的目标类，二就是上述方法获取到的所以elements集合
 	 */
 	public InjectionMetadata(Class<?> targetClass, Collection<InjectedElement> elements) {
 		this.targetClass = targetClass;
