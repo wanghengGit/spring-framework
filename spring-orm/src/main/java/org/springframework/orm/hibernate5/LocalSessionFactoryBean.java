@@ -73,6 +73,8 @@ import org.springframework.util.ClassUtils;
  * @see HibernateTransactionManager
  * @see LocalSessionFactoryBuilder
  * @see org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+ * @date 20200911
+ * @author wangheng
  */
 public class LocalSessionFactoryBean extends HibernateExceptionTranslator
 		implements FactoryBean<SessionFactory>, ResourceLoaderAware, BeanFactoryAware, InitializingBean, DisposableBean {

@@ -46,6 +46,7 @@ import org.springframework.util.CollectionUtils;
  * @since 2.0
  * @see NamespaceHandler
  * @see DefaultBeanDefinitionDocumentReader
+ * @date 20200727
  */
 public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver {
 

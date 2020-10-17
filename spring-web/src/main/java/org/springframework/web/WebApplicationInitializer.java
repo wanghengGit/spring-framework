@@ -174,6 +174,8 @@ import javax.servlet.ServletException;
  * @see org.springframework.web.servlet.support.AbstractDispatcherServletInitializer
  * @see org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer
  * @date 20200505
+ * @author kit
+ * @date 20200911
  */
 public interface WebApplicationInitializer {
 

@@ -42,6 +42,8 @@ import org.springframework.util.ClassUtils;
  * @author Juergen Hoeller
  * @author Ramnivas Laddad
  * @since 2.0
+ * @date 20200727
+ * Spring启动时的beanPostProcessor，bean生命周期中经常可以看到beanPostProcessor在起作用，AOP也是基于IOC来实现的。
  */
 @SuppressWarnings("serial")
 public class AspectJAwareAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCreator {

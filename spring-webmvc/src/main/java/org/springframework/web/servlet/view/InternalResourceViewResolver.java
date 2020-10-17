@@ -45,6 +45,8 @@ import org.springframework.util.ClassUtils;
  * @see #setRequestContextAttribute
  * @see InternalResourceView
  * @see JstlView
+ * @author kit
+ * @date 20200911
  */
 public class InternalResourceViewResolver extends UrlBasedViewResolver {
 

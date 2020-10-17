@@ -378,6 +378,12 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		return null;
 	}
 
+	/**
+	 *
+	 * @param index
+	 * @param basePackage
+	 * @return
+	 */
 	private Set<BeanDefinition> addCandidateComponentsFromIndex(CandidateComponentsIndex index, String basePackage) {
 		Set<BeanDefinition> candidates = new LinkedHashSet<>();
 		try {
@@ -418,7 +424,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		return candidates;
 	}
 
-	// 大致的流程如下：
+	// TODO 大致的流程如下：
 	// (1)先根据context:component-scan 中属性的base-package="com.mango.jtt"配置转换为classpath*:com/mango/jtt/**/*.class（默认格式）
 	//并扫描对应下的class和jar文件并获取类对应的路径，返回Resources
 	//根据指定的不扫描包，指定的扫描包配置进行过滤不包含的包对应下的class和jar。

@@ -42,6 +42,8 @@ import org.springframework.util.Assert;
  * @see #setForceEncoding
  * @see javax.servlet.http.HttpServletRequest#setCharacterEncoding
  * @see javax.servlet.http.HttpServletResponse#setCharacterEncoding
+ * @author kit
+ * @date 20200911
  */
 public class CharacterEncodingFilter extends OncePerRequestFilter {
 

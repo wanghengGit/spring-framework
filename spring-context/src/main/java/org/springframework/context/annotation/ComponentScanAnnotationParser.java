@@ -73,7 +73,14 @@ class ComponentScanAnnotationParser {
 		this.registry = registry;
 	}
 
-
+	/**
+	 * Spring对@ComponentScan注解的解析处理
+	 * 这段代码说白了就是委托给ClassPathBeanDefinitionScanner来做事情，
+	 * 随后调用org.springframework.context.annotation.ClassPathBeanDefinitionScanner#doScan来进行真实的扫描逻辑。
+	 * @param componentScan
+	 * @param declaringClass
+	 * @return
+	 */
 	public Set<BeanDefinitionHolder> parse(AnnotationAttributes componentScan, final String declaringClass) {
 		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(this.registry,
 				componentScan.getBoolean("useDefaultFilters"), this.environment, this.resourceLoader);

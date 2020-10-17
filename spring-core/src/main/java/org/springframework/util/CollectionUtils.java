@@ -26,6 +26,7 @@ import org.springframework.lang.Nullable;
  * @author Arjen Poutsma
  * @since 1.1.3
  * @date 20200325
+ * @author kit
  */
 public abstract class CollectionUtils {
 

@@ -42,6 +42,8 @@ import org.springframework.lang.Nullable;
  * @author Brian Clozel
  * @since 3.2.2
  * @see FileCopyUtils
+ * @author kit
+ * @date 20200819
  */
 public abstract class StreamUtils {
 

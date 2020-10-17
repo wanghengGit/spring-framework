@@ -72,6 +72,8 @@ import javax.servlet.http.HttpServletResponse;
  * @see org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter
  * @see org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter
  * @see org.springframework.remoting.caucho.HessianServiceExporter
+ * @author kit
+ * @date 20200911
  */
 @FunctionalInterface
 public interface HttpRequestHandler {
