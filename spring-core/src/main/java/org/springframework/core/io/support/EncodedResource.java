@@ -36,6 +36,8 @@ import org.springframework.util.ObjectUtils;
  * @see java.io.Reader
  * @see java.nio.charset.Charset
  * @date 20200315
+ * @author kit
+ * 对资源文件的编码进行处理
  */
 public class EncodedResource implements InputStreamSource {
 

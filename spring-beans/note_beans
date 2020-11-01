@@ -1,3 +1,8 @@
+src/main/java用于展现spring的主要逻辑
+src/main/resource用于存放系统的配置文件
+src/test/java用于对主要逻辑进行单元测试
+src/test/resources用于存放测试用的配置文件
+
 spring-beans负责实现Spring框架的IOC模块
 Beans包的核心功能就是对Bean对象生命周期的管理，包含Bean的定义、解析和创建等
 

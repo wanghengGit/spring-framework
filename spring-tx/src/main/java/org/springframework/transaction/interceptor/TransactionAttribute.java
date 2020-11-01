@@ -29,6 +29,7 @@ import org.springframework.transaction.TransactionDefinition;
  * @since 16.03.2003
  * @see DefaultTransactionAttribute
  * @see RuleBasedTransactionAttribute
+ * @date 20200717
  */
 public interface TransactionAttribute extends TransactionDefinition {
 

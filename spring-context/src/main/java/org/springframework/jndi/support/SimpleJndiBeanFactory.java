@@ -59,6 +59,8 @@ import org.springframework.lang.Nullable;
  * @since 2.5
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
  * @see org.springframework.context.annotation.CommonAnnotationBeanPostProcessor
+ * @author kit
+ * @date 20201028
  */
 public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFactory {
 

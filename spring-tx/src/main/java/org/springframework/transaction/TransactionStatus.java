@@ -10,6 +10,7 @@ import java.io.Flushable;
  * @see PlatformTransactionManager#getTransaction
  * @see org.springframework.transaction.support.TransactionCallback#doInTransaction
  * @see org.springframework.transaction.interceptor.TransactionInterceptor#currentTransactionStatus()
+ * @date 20200717
  */
 public interface TransactionStatus extends TransactionExecution, SavepointManager, Flushable {
 

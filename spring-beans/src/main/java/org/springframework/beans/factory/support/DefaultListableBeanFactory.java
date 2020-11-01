@@ -93,6 +93,7 @@ import org.springframework.util.StringUtils;
  * @author Chris Beams
  * @author Phillip Webb
  * @author Stephane Nicoll
+ * @author kit
  * @data 20200315
  * 整个bean加载的核心部分，spring加载和注册bean的默认实现
  * 实现了ConfigurableListableBeanFactory，实现上述BeanFactory所有功能。它还可以注册BeanDefinition

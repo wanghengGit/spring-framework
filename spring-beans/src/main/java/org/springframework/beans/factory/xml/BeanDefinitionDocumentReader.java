@@ -18,6 +18,7 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
  * @since 18.12.2003
  * @see XmlBeanDefinitionReader#setDocumentReaderClass
  * @date 20200324
+ * @author kit
  */
 public interface BeanDefinitionDocumentReader {
 

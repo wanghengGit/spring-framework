@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
  * @since 28.12.2003
  * @see ClassLoader#getResourceAsStream(String)
  * @see Class#getResourceAsStream(String)
+ * @author kit
  * @date 20200315
  * 加载资源
  */

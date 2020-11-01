@@ -109,13 +109,17 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @see #setTarget
  * @see #setTransactionAttributes
  * @see TransactionInterceptor
- * @see org.springframework.aop.framework.ProxyFactoryBean
+ * @see org.springframew
+ * ork.aop.framework.ProxyFactoryBean
  * @date 20200615
+ * 配置传播行为，并发事务隔离级别
  */
 @SuppressWarnings("serial")
 public class TransactionProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 		implements BeanFactoryAware {
-
+	/**
+	 * 这个拦截器TransactionInterceptor通过aop发挥作用，通过这个拦截器实现，spring封装了事务处理实现
+	 */
 	private final TransactionInterceptor transactionInterceptor = new TransactionInterceptor();
 
 	@Nullable

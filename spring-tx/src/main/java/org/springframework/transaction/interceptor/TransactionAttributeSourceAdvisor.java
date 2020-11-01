@@ -36,6 +36,7 @@ import org.springframework.util.Assert;
  * @author Juergen Hoeller
  * @see #setTransactionInterceptor
  * @see TransactionProxyFactoryBean
+ * @date 20200717
  */
 @SuppressWarnings("serial")
 public class TransactionAttributeSourceAdvisor extends AbstractPointcutAdvisor {

@@ -37,6 +37,7 @@ import org.springframework.util.ClassUtils;
  *
  * @author Juergen Hoeller
  * @since 2.0
+ * @date 20200717
  */
 @SuppressWarnings("serial")
 public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig

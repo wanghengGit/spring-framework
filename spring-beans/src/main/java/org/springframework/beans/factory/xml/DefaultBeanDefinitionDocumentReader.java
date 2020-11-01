@@ -56,6 +56,7 @@ import org.springframework.util.StringUtils;
  * @author Erik Wiersma
  * @since 18.12.2003
  * @date 20200626
+ * @author kit
  */
 public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocumentReader {
 
@@ -117,6 +118,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 
 	/**
 	 * Register each bean definition within the given root {@code <beans/>} element.
+	 * TODO
 	 */
 	@SuppressWarnings("deprecation")  // for Environment.acceptsProfiles(String...)
 	protected void doRegisterBeanDefinitions(Element root) {
@@ -134,6 +136,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		//或者为BeanDefinitionParserDelegate.BEANS_NAMESPACE_URI
 		//"http://www.springframework.org/schema/beans"
 		if (this.delegate.isDefaultNamespace(root)) {
+			//处理profiles属性
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);
 			if (StringUtils.hasText(profileSpec)) {
 				String[] specifiedProfiles = StringUtils.tokenizeToStringArray(
@@ -150,6 +153,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				}
 			}
 		}
+		//模板方法模式
 		//什么都没做，需要子类来实现
 		preProcessXml(root);
 		//解析BeanDefinitions
@@ -172,12 +176,13 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * Parse the elements at the root level in the document:
 	 * "import", "alias", "bean".
 	 * @param root the DOM root element of the document
+	 * todo处理xml
 	 */
 	protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
 		//检测根节点是否使用默认的命名空间
 		if (delegate.isDefaultNamespace(root)) {
 			NodeList nl = root.getChildNodes();
-			//遍历节点
+			//遍历节点，对beans的处理
 			for (int i = 0; i < nl.getLength(); i++) {
 				Node node = nl.item(i);
 				if (node instanceof Element) {

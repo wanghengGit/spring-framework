@@ -61,6 +61,7 @@ import org.springframework.util.xml.XmlValidationModeDetector;
  * @see BeanDefinitionRegistry
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
  * @see org.springframework.context.support.GenericApplicationContext
+ * @author kit
  * @date 20200315
  * 资源文件读取、解析及注册
  */
@@ -376,9 +377,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
 	 * @see #doLoadDocument
 	 * @see #registerBeanDefinitions
-	 * 可以看到 就是对Document中元素、节点的不断解析。这里的解析分成了两条路线，
-	 * 一个是默认标签的解析，如Spring自己定义的标签；
-	 * 一个是对自定义标签的解析，如自定义的标签
+	 * 做了三件事
+	 * 1.获取对XML文件的验证模式
+	 * 2.加责XML文件，并得到对应的Document
+	 * 3.根据返回的Document注册Bean消息
 	 */
 	protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
 			throws BeanDefinitionStoreException {
@@ -503,6 +505,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see #loadBeanDefinitions
 	 * @see #setDocumentReaderClass
 	 * @see BeanDefinitionDocumentReader#registerBeanDefinitions
+	 * 单一职责的原则
 	 */
 	public int registerBeanDefinitions(Document doc, Resource resource) throws BeanDefinitionStoreException {
 		//利用反射创建对象
