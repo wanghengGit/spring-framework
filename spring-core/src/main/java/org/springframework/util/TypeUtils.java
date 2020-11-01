@@ -31,6 +31,8 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Chris Beams
  * @since 2.0.7
+ * @author kit
+ * @date 20200819
  */
 public abstract class TypeUtils {
 

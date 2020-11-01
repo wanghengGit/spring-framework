@@ -42,6 +42,8 @@ import org.springframework.util.StringUtils;
  * @since 3.1.1
  * @see AnnotationUtils#getAnnotationAttributes
  * @see AnnotatedElementUtils
+ * @author kit
+ * @date 20200819
  */
 @SuppressWarnings("serial")
 public class AnnotationAttributes extends LinkedHashMap<String, Object> {

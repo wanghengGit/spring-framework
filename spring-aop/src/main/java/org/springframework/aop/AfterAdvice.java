@@ -25,6 +25,8 @@ import org.aopalliance.aop.Advice;
  * @author Juergen Hoeller
  * @since 2.0.3
  * @see BeforeAdvice
+ * @author kit
+ * @date 20201101
  */
 public interface AfterAdvice extends Advice {
 

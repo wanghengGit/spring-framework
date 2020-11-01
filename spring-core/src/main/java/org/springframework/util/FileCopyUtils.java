@@ -40,6 +40,8 @@ import org.springframework.lang.Nullable;
  * @since 06.10.2003
  * @see StreamUtils
  * @see FileSystemUtils
+ * @author kit
+ * @date 20200819
  */
 public abstract class FileCopyUtils {
 

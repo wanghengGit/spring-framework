@@ -25,6 +25,8 @@ import org.aopalliance.aop.Advice;
  * this API is designed to allow field advice in future if desired.
  *
  * @author Rod Johnson
+ * @author kit
+ * @date 20201101
  * @see AfterAdvice
  */
 public interface BeforeAdvice extends Advice {

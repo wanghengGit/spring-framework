@@ -29,6 +29,8 @@ import org.springframework.lang.Nullable;
  *
  * @author Dave Syer
  * @since 3.0.5
+ * @author kit
+ * @date 20200819
  */
 public abstract class SerializationUtils {
 

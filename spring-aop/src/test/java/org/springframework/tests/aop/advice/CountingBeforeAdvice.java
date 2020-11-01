@@ -24,6 +24,7 @@ import org.springframework.aop.MethodBeforeAdvice;
  * Simple before advice example that we can use for counting checks.
  *
  * @author Rod Johnson
+ * @author kit
  * @date 20200718
  */
 @SuppressWarnings("serial")

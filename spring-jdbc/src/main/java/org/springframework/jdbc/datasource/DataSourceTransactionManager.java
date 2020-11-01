@@ -25,6 +25,8 @@ import org.springframework.util.Assert;
  * @see LazyConnectionDataSourceProxy
  * @see org.springframework.jdbc.core.JdbcTemplate
  * 适用于使用JDBC和iBatis进行数据持久化操作的情况
+ * @author kit
+ * @date 20200911
  */
 @SuppressWarnings("serial")
 public class DataSourceTransactionManager extends AbstractPlatformTransactionManager

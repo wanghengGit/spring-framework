@@ -36,6 +36,8 @@ import org.springframework.lang.Nullable;
  * @see java.io.File
  * @see java.nio.file.Path
  * @see java.nio.file.Files
+ * @author kit
+ * @date 20200819
  */
 public abstract class FileSystemUtils {
 

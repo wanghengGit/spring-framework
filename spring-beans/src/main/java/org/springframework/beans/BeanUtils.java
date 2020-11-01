@@ -63,6 +63,8 @@ import org.springframework.util.StringUtils;
  * @author Rob Harrop
  * @author Sam Brannen
  * @author Sebastien Deleuze
+ * @author kit
+ * @date 20200805
  */
 public abstract class BeanUtils {
 

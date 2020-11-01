@@ -269,12 +269,20 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * but rather leaves this up to the caller.
 	 * @param basePackages the packages to check for annotated classes
 	 * @return set of beans registered if any for tooling registration purposes (never {@code null})
+	 * TODO
+	 *doScan来进行真实的扫描逻辑
+	 * 首先根据包名拼接要扫描资源的路径，随后交给resourcePatternResolver来加载资源，遍历这些资源，
+	 * 根据资源找到对应的MetadataReader的实例，通过isCandidateComponent(MetadataReader metadataReader)来根据excludeFilters
+	 * 和includeFilters判断是否可以进行下一步的操作，如果这个资源被排除的filter匹配上，就返回false，代表不是我们所需要的。
+	 * 如果被包含的filter匹配上，并且他还要通过条件判断isConditionMatch的话，返回true，代表是我们需要的资源，可以进行下一步的操作。
+	 * 这里我们插一句Spring有默认的includ类型的filter实现，如果上层传入的话，就是用上层传入的，否则就使用默认的，默认的是扫描@Component注解，
+	 * 详情请看org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider#registerDefaultFilters
 	 */
 	protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
 		Assert.notEmpty(basePackages, "At least one base package must be specified");
 		Set<BeanDefinitionHolder> beanDefinitions = new LinkedHashSet<>();
 		for (String basePackage : basePackages) {
-			//实际上扫描文件并包装成BeanDefinition是由findCandidateComponents来做的
+			// TODO 实际上扫描文件并包装成BeanDefinition是由findCandidateComponents来做的
 			Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
 			for (BeanDefinition candidate : candidates) {
 				ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(candidate);
@@ -291,6 +299,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 					definitionHolder =
 							AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
 					beanDefinitions.add(definitionHolder);
+					// registerBeanDefinition
 					registerBeanDefinition(definitionHolder, this.registry);
 				}
 			}

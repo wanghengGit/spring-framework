@@ -74,6 +74,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * @see org.springframework.orm.hibernate5.HibernateTransactionManager
  * @see TransactionSynchronizationManager
  * @see SessionFactory#getCurrentSession()
+ * @author kit
+ * @date 20200911
+ * 配置openSessionInView时，启动后他默认是给没有配置事务边界的方法都默认为只读的，所以在插入数据时会报错
  */
 public class OpenSessionInViewFilter extends OncePerRequestFilter {
 

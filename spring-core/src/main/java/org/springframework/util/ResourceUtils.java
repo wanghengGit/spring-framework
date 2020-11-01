@@ -44,6 +44,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.core.io.FileSystemResource
  * @see org.springframework.core.io.UrlResource
  * @see org.springframework.core.io.ResourceLoader
+ * @author kit
+ * @date 20200819
  */
 public abstract class ResourceUtils {
 

@@ -27,6 +27,8 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @see MethodBeforeAdvice
  * @see ThrowsAdvice
+ * @author kit
+ * @date 20201101
  */
 public interface AfterReturningAdvice extends AfterAdvice {
 

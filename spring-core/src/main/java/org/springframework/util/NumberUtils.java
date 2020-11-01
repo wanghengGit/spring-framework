@@ -35,6 +35,8 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Rob Harrop
  * @since 1.1.2
+ * @author kit
+ * @date 20200819
  */
 public abstract class NumberUtils {
 

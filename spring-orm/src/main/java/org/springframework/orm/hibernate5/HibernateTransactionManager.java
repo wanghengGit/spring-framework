@@ -45,6 +45,8 @@ import org.springframework.util.Assert;
  * @see org.springframework.jdbc.datasource.DataSourceTransactionManager
  * @see org.springframework.transaction.jta.JtaTransactionManager
  * 适用于使用Hibernate进行数据持久化操作的情况
+ * @author kit
+ * @date 20200911
  */
 @SuppressWarnings("serial")
 public class HibernateTransactionManager extends AbstractPlatformTransactionManager

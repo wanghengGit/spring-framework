@@ -72,6 +72,7 @@ import org.springframework.util.ReflectionUtils;
  * @author Mark Fisher
  * @author Stephane Nicoll
  * @date 20200324
+ * @author kit
  * 要想使用注解处理器，必须要实例化注解处理器，那么其实例化是在哪里进行的呢，
  * 这里还需要回到org.springframework.context.support.AbstractApplicationContext.java中的refresh()函数
  * @see #refreshBeanFactory
@@ -420,7 +421,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			 * 初始化BeanFactory，解析XML，相当于之前的XmlBeanFactory的操作，
 			 *
 			 */
-			// 创建bean工厂，里面实现了BeanDefinition的装载
+			// TODO 创建bean工厂，里面实现了BeanDefinition的装载
+			// 加载解析配置文件
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
@@ -513,7 +515,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				 * 冻结所有的bean定义，说明注册的bean定义将不能被修改或进一步的处理
 				 * 初始化剩余的非惰性的bean，即初始化非延迟加载的bean
 				 */
-				//初始化所有未初始化的非懒加载的单例Bean
+				//TODO 初始化所有未初始化的非懒加载的单例Bean
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
