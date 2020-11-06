@@ -1,0 +1,30 @@
+
+SpringBoot原理学习之web mvc rest1-----请求流程解析
+
+1.Rest请求到来之后，被DispatchServlet拿到，进入到doDispatch方法中
+
+2.遍历所有的handlermapping，一直到某个handlerMapping找到了请求路径对应的HandlerExecutionChain，HandlerExecutionChain其中核心就是某个Controller对应的方法
+
+3.根据第2步中找到的HandlerExecutionChain，遍历所有的HandlerAdapter，直到找到能够支持HandlerExecutionChain中的handler的HandlerAdapter为止。其实这里判断的很水，就是看handler是不是HandlerMethod的对象。用的最多的就是RequestMappingHandlerAdapter，下面以RequestMappingHandlerAdapter为例来看看执行流程。
+
+4.调用RequestMappingHandlerAdapter的handleInternal方法，这个方法会返回ModelAndView。具体调用流程如下：
+
+4.1handleInternal调用invokeHandlerMethod(request, response, handlerMethod)，invokeHandlerMethod也是RequestMappingHandlerAdapter中的方法，参数handlerMethod就是我们在第2步中找到的handler。这个handler会被封装成ServletInvocableHandlerMethod，然后进行调用，具体调用步骤如下：
+
+       4.1.1获取具体的请求参数：Object[] args = getMethodArgumentValues(request, mavContainer, providedArgs);
+
+              4.1.1.1解析参数的时候用到了一个非常牛逼的东西：HandlerMethodArgumentResolverComposite，这是一个组合模式，里面包含了26个HandlerMethodArgumentResolver，那么究竟会选择哪一个resolver呢？其实在装载前SpringMVC就已经排好顺序了，当然也不是说排在最前面就一定要执行，这个还是要看resolver对参数是否真正的支持。一般来说我们的rest请求参数是JSON格式，那么请求参数里面往往会有一个@RequestBody这样的注解，RequestResponseBodyMethodProcessor这个HandlerMethodArgumentResolver优先级很高，而且他专门支持对@RequestBody注解的参数解析，所以在rest请求中，它的使用频率非常的高。找到这个HandlerMethodArgumentResolver之后，会调用它的resolveArgument方法来解析参数，其中解析是使用了它内部的StringHttpMessageConverter这个messageConverter来进行数据的真正解析，为什么选择这个Converter，是考虑到了请求中的Content-type等一系列要素，就这样请求参数被解析好了。
+
+       4.1.2利用4.1.1中得到的请求参数，进行反射调用，获得返回结果值。这个值就是returnValue
+
+       4.1.3拿到returnValue直接返回不就好了吗？怎么可能捏~~有时候我们的方法返回的是String，有时候返回的是User这样的对象，浏览器怎么去解析呢？所以我们还要对returnValue进行解析，怎么解析？ServletInvocableHandlerMethod中的成员returnValueHandlers会对这个返回值做解析，这个returnValueHandlers是HandlerMethodReturnValueHandlerComposite类型的，没错又是一个组合模式。解析步骤如下：
+
+               4.1.3.1选择一个HandlerMethodReturnValueHandler，哇又是一个handler，而且说到选择，肯定SpringBoot又装载了一堆handler进去，对的，HandlerMethodReturnValueHandlerComposite类似于前面参数解析的HandlerMethodArgumentResolver，又要根据HandlerMethodReturnValueHandler的优先级和对返回参数的支持来进行选择。这里，我们的RestController非常巧，选择的HandlerMethodReturnValueHandler又是RequestResponseBodyMethodProcessor，这个玩意儿支持@ResponseBody注解的method，所以它又被选中了！
+
+               4.1.3.2调用writeWithMessageConverters处理返回值。这个方法逻辑非常的复杂，我只讲讲关键思路：
+
+                       4.1.3.2.1List<MediaType> acceptableTypes = getAcceptableMediaTypes(request);List<MediaType> producibleTypes = getProducibleMediaTypes(request, valueType, targetType);getAcceptableMediaTypes获取请求头里面的Accept，看看请求需要什么样的返回MediaType，怎么解析的呢？还记的我上一章节讲的contentNegotiationManager吗，对的用它里面的策略去解析！一共有很多策略，如果说请求里头里面有ACCEPT，会用HeaderContentNegotiationStrategy去解析出来，否则会用其他strategy去解析，我这里就讲请求头策略解析方式，其他的还有参数之类的解析方式，读者可以自行研究。getProducibleMediaTypes获取Controller方法注解里面的produces里面的mediaType。然后对两种类型做选择和匹配，获得一个最终要返回给客户端的mediaType。
+
+                       4.1.3.2选择一个支持这种mediaType的messageConverter，RestController选择了MappingJackson2HttpMessageConverter来返回给客户端，至此全部结束。
+
+这里为什么我要大篇幅的讲处理流程，是因为后面我会自定义一些resovler进去和一些messageConverter进去，帮助大家更好的去理解，我们写了那么多的MVC程序，但是对于其中的消息转换，以及其中方法处理的适配，还是值得我们去研究的。

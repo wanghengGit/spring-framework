@@ -587,6 +587,14 @@ public class DispatcherServlet extends FrameworkServlet {
 		});
 	}
 
+	/**
+	 * 1.Rest请求到来之后，被DispatchServlet拿到，进入到doDispatch方法中
+	 * 2.遍历所有的handlermapping，一直到某个handlerMapping找到了请求路径对应的HandlerExecutionChain，HandlerExecutionChain其中核心就是某个Controller对应的方法
+	 * 3.根据第2步中找到的HandlerExecutionChain，遍历所有的HandlerAdapter，直到找到能够支持HandlerExecutionChain中的handler的HandlerAdapter为止。其实这里判断的很水，就是看handler是不是HandlerMethod的对象。用的最多的就是RequestMappingHandlerAdapter，下面以RequestMappingHandlerAdapter为例来看看执行流程。
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpServletRequest processedRequest = request;
 		HandlerExecutionChain mappedHandler = null;

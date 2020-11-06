@@ -110,6 +110,8 @@ import org.springframework.web.util.WebUtils;
  * @since 3.1
  * @see HandlerMethodArgumentResolver
  * @see HandlerMethodReturnValueHandler
+ * @author kit
+ * @date 20201106
  */
 public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		implements BeanFactoryAware, InitializingBean {
@@ -766,6 +768,15 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		return true;
 	}
 
+	/**
+	 * 4.调用RequestMappingHandlerAdapter的handleInternal方法，这个方法会返回ModelAndView
+	 * @param request current HTTP request
+	 * @param response current HTTP response
+	 * @param handlerMethod handler method to use. This object must have previously been passed to the
+	 * {@link #supportsInternal(HandlerMethod)} this interface, which must have returned {@code true}.
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	protected ModelAndView handleInternal(HttpServletRequest request,
 			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
@@ -839,6 +850,8 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	 * if view resolution is required.
 	 * @since 4.2
 	 * @see #createInvocableHandlerMethod(HandlerMethod)
+	 * 4.1handleInternal调用invokeHandlerMethod(request, response, handlerMethod)，invokeHandlerMethod也是RequestMappingHandlerAdapter中的方法，参数handlerMethod就是我们在第2步中找到的handler。
+	 * 这个handler会被封装成ServletInvocableHandlerMethod，然后进行调用，具体调用步骤如下：
 	 */
 	@Nullable
 	protected ModelAndView invokeHandlerMethod(HttpServletRequest request,

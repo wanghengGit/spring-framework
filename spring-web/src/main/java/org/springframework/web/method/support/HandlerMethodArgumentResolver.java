@@ -29,6 +29,8 @@ import org.springframework.web.context.request.NativeWebRequest;
  * @author Arjen Poutsma
  * @since 3.1
  * @see HandlerMethodReturnValueHandler
+ * @author kit
+ * @date 20201106
  */
 public interface HandlerMethodArgumentResolver {
 
