@@ -44,6 +44,7 @@ import org.springframework.util.StringUtils;
  * @see java.lang.reflect.AnnotatedElement#getAnnotation(Class)
  * @see java.lang.reflect.AnnotatedElement#getDeclaredAnnotations()
  * @date 20200325
+ * @author kit
  */
 public abstract class AnnotationUtils {
 

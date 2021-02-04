@@ -59,6 +59,7 @@ import org.springframework.util.PatternMatchUtils;
  * @see org.springframework.stereotype.Repository
  * @see org.springframework.stereotype.Service
  * @see org.springframework.stereotype.Controller
+ * @author kit
  * @date 20200605
  */
 public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateComponentProvider {
@@ -270,7 +271,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @param basePackages the packages to check for annotated classes
 	 * @return set of beans registered if any for tooling registration purposes (never {@code null})
 	 * TODO
-	 *doScan来进行真实的扫描逻辑
+	 * doScan来进行真实的扫描逻辑
 	 * 首先根据包名拼接要扫描资源的路径，随后交给resourcePatternResolver来加载资源，遍历这些资源，
 	 * 根据资源找到对应的MetadataReader的实例，通过isCandidateComponent(MetadataReader metadataReader)来根据excludeFilters
 	 * 和includeFilters判断是否可以进行下一步的操作，如果这个资源被排除的filter匹配上，就返回false，代表不是我们所需要的。

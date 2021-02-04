@@ -409,7 +409,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			 */
 			//	 容器预先准备，记录容器启动时间和标记
 			prepareRefresh();
-			//1. 创建真正的bean容器 ConfiurabaleBeanFactroy
+			//1.创建真正的bean容器 ConfiurabaleBeanFactroy
 			//2.加载beandefiniton（描述要初始化的Bean的信息）
 			//3.将beandefiniton注册到BeanDefitionRegistry
 
@@ -555,6 +555,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Prepare this context for refreshing, setting its startup date and
 	 * active flag as well as performing any initialization of property sources.
+	 * //	 容器预先准备，记录容器启动时间和标记
 	 */
 	protected void prepareRefresh() {
 		// Switch to active.

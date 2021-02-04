@@ -59,6 +59,7 @@ import org.springframework.util.StringUtils;
  * @author Sam Brannen
  * @since 3.2
  * @date 20200627
+ * @author kit
  */
 public final class SpringFactoriesLoader {
 

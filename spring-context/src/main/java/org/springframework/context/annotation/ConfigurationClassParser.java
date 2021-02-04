@@ -105,6 +105,8 @@ import org.springframework.util.StringUtils;
  * @author Stephane Nicoll
  * @since 3.0
  * @see ConfigurationClassBeanDefinitionReader
+ * @author kit
+ * @date 20201224
  */
 class ConfigurationClassParser {
 

@@ -52,6 +52,7 @@ import org.springframework.util.StringUtils;
  * @see ConfigurableEnvironment
  * @see StandardEnvironment
  * @date 20200410
+ * @author kit
  */
 public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 

@@ -14,6 +14,8 @@ package org.springframework.core.env;
  * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
  * @date 20200324
  * 环境的一些参数
+ * Environment接口提供了4种实现方式，StandardEnvironment、StandardServletEnvironment和MockEnvironment、StandardReactiveWebEnvironment，
+ * 分别代表普通程序、Web程序、测试程序的环境、响应式web环境
  */
 public interface Environment extends PropertyResolver {
 

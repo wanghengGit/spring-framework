@@ -42,7 +42,8 @@ import org.springframework.web.context.ConfigurableWebEnvironment;
  * @since 3.1
  * @see StandardEnvironment
  * @date 20200410
- * StandardServletEnvironment是整个springboot应用运行环境的实现类，后面所有关于配置和环境的操作都基于此类
+ * StandardServletEnvironment是整个springboot应用运行环境的实现类，
+ * 后面所有关于配置和环境的操作都基于此类
  */
 public class StandardServletEnvironment extends StandardEnvironment implements ConfigurableWebEnvironment {
 

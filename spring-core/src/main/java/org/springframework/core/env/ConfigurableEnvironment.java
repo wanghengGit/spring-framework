@@ -68,6 +68,8 @@ import java.util.Map;
  * @since 3.1
  * @see StandardEnvironment
  * @see org.springframework.context.ConfigurableApplicationContext#getEnvironment
+ * @author kit
+ * @date 20201224
  */
 public interface ConfigurableEnvironment extends Environment, ConfigurablePropertyResolver {
 
