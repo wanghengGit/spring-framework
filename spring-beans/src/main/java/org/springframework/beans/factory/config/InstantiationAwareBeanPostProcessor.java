@@ -39,6 +39,7 @@ import org.springframework.lang.Nullable;
  * @since 1.2
  * @see org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#setCustomTargetSourceCreators
  * @see org.springframework.aop.framework.autoproxy.target.LazyInitTargetSourceCreator
+ * 扩展点
  */
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 

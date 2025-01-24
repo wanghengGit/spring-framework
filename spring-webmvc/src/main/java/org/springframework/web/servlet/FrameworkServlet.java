@@ -526,7 +526,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 	 * have been set. Creates this servlet's WebApplicationContext.
 	 */
 	@Override
-	protected final void initServletBean() throws ServletException {
+	protected final void 	initServletBean() throws ServletException {
 		getServletContext().log("Initializing Spring " + getClass().getSimpleName() + " '" + getServletName() + "'");
 		if (logger.isInfoEnabled()) {
 			logger.info("Initializing Servlet '" + getServletName() + "'");

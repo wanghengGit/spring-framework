@@ -38,6 +38,7 @@ import java.util.function.Consumer;
  * @see org.springframework.context.event.SmartApplicationListener
  * @see org.springframework.context.event.GenericApplicationListener
  * @see org.springframework.context.event.EventListener
+ * 扩展点
  */
 @FunctionalInterface
 public interface ApplicationListener<E extends ApplicationEvent> extends EventListener {

@@ -32,6 +32,7 @@ package org.springframework.beans.factory;
  * @see BeanClassLoaderAware
  * @see BeanFactoryAware
  * @see InitializingBean
+ * 扩展点
  */
 public interface BeanNameAware extends Aware {
 

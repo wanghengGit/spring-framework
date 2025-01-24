@@ -61,6 +61,7 @@ import org.springframework.util.StringValueResolver;
  * @see org.springframework.context.ApplicationStartupAware
  * @see org.springframework.context.ApplicationContextAware
  * @see org.springframework.context.support.AbstractApplicationContext#refresh()
+ * 扩展点
  */
 class ApplicationContextAwareProcessor implements BeanPostProcessor {
 

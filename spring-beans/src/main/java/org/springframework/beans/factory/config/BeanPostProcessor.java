@@ -54,6 +54,7 @@ import org.springframework.lang.Nullable;
  * @see DestructionAwareBeanPostProcessor
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
+ * 扩展点
  */
 public interface BeanPostProcessor {
 

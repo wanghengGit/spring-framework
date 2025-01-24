@@ -33,6 +33,7 @@ package org.springframework.beans.factory;
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName()
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#destroySingletons()
  * @see org.springframework.context.ConfigurableApplicationContext#close()
+ * 扩展点
  */
 public interface DisposableBean {
 
